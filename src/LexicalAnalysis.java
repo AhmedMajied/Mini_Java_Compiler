@@ -1,3 +1,5 @@
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,7 +12,7 @@ public class LexicalAnalysis {
 	}
 	
 	public void extractTokens(String text){
-		Vector<Lexeme> Lexemes = new Vector<>();
+		Set<Lexeme> Lexemes = new TreeSet<>();
 		Pattern pattern;
 		Matcher matcher;
 		
@@ -21,12 +23,13 @@ public class LexicalAnalysis {
 			while(matcher.find()){
 				Lexemes.add(new Lexeme(matcher.group(), matcher.start(), Tokens.get(i)));
 				text = text.replace(matcher.group(), repeatSpaces(matcher.group().length()));
-				//System.out.println(matcher.group());
 			}
 		}
-		System.out.println(text);
 		
-		// sorting will be here (Andrew)
+		// for testing only
+		for(Lexeme l : Lexemes) {
+			System.out.println(l.matchedWord);
+		}
 		
 	}
 	
@@ -84,7 +87,28 @@ public class LexicalAnalysis {
 		Tokens.add(new Token("SWITCH","switch"));
 		Tokens.add(new Token("THROW","throw"));
 		Tokens.add(new Token("TRY","try"));
+		
+		//Andrew
+		Tokens.add(new Token("EOL","$"));
+		Tokens.add(new Token("PLUS","\\+"));
+		Tokens.add(new Token("COMMA",","));
+		Tokens.add(new Token("DOT","\\."));
+		Tokens.add(new Token("NOT","\\!"));
+		Tokens.add(new Token("EQUAL","="));
+		Tokens.add(new Token("SEMICOLON",";"));
+		Tokens.add(new Token("AND","&&"));
+		Tokens.add(new Token("MINUS","\\-"));
+		Tokens.add(new Token("MULTIPLY","\\*"));
+		Tokens.add(new Token("LESSTHAN","<"));
+		Tokens.add(new Token("GREATERTHAN",">"));
+		
+		
+		
+		
+		//This Should be the Last Token to be Checked
 		Tokens.add(new Token("ERROR","\\S"));
+
+		
 	}
 	
 	private String repeatSpaces(int times) {
