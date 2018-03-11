@@ -21,11 +21,12 @@ public class LexicalAnalysis {
 			while(matcher.find()){
 				Lexemes.add(new Lexeme(matcher.group(), matcher.start(), Tokens.get(i)));
 				text = text.replace(matcher.group(), repeatSpaces(matcher.group().length()));
+				//System.out.println(matcher.group());
 			}
 		}
-		//System.out.println(text);
+		System.out.println(text);
 		
-		// i will do here sorting
+		// sorting will be here (Andrew)
 		
 	}
 	
@@ -34,6 +35,7 @@ public class LexicalAnalysis {
 		// you should add here your tokens with its suitable order 
 		// ( i guess that all will be after mine
 		
+		Tokens.add(new Token("SYSTEM.OUT.PRINTLN","System.out.println"));
 		Tokens.add(new Token("IF","if"));
 		Tokens.add(new Token("INT","int"));
 		Tokens.add(new Token("ELSE","else"));
@@ -82,7 +84,7 @@ public class LexicalAnalysis {
 		Tokens.add(new Token("SWITCH","switch"));
 		Tokens.add(new Token("THROW","throw"));
 		Tokens.add(new Token("TRY","try"));
-		Tokens.add(new Token("SYSTEM.OUT.PRINTLN","System.out.println"));
+		Tokens.add(new Token("ERROR","\\S"));
 	}
 	
 	private String repeatSpaces(int times) {
