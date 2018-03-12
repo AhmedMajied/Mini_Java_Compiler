@@ -37,6 +37,9 @@ public class LexicalAnalysis {
 		
 		// you should add here your tokens with its suitable order 
 		// ( i guess that all will be after mine
+		Tokens.add(new Token("M_COMMENTS","-	\\/\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*\\/"));
+		Tokens.add(new Token("S_COMMENTS","\\/\\/.*\\n"));
+		Tokens.add(new Token("STRING_LITERAL","\".*\""));
 		
 		Tokens.add(new Token("SYSTEM.OUT.PRINTLN","System.out.println"));
 		Tokens.add(new Token("IF","if"));
@@ -103,7 +106,12 @@ public class LexicalAnalysis {
 		Tokens.add(new Token("GREATERTHAN",">"));
 		
 		
-		
+		Tokens.add(new Token("LEFT_CURLY_B","\\{"));
+		Tokens.add(new Token("RIGHT_CURLY_B","\\}"));
+		Tokens.add(new Token("LEFT_SQUARE_B","\\["));
+		Tokens.add(new Token("RIGHT_SQUARE_B","\\]"));
+		Tokens.add(new Token("LEFT_ROUND_B","\\("));
+		Tokens.add(new Token("RIGHT_ROUND_B","\\)"));
 		
 		//This Should be the Last Token to be Checked
 		Tokens.add(new Token("ERROR","\\S"));
