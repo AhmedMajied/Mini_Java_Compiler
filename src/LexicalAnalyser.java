@@ -4,15 +4,13 @@ import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LexicalAnalysis {
-	private Vector<Token> Tokens = new Vector<Token>();
+public class LexicalAnalyser {
 	
-	public LexicalAnalysis(){
-		createTokens();
-	}
 	
-	public void extractTokens(StringBuffer text){
-		Set<Lexeme> Lexemes = new TreeSet<>();
+	public static Set<Lexeme> extractTokens(StringBuffer text){
+		Vector<Token> Tokens = new Vector<Token>();
+		createTokens(Tokens);
+		Set<Lexeme> Lexemes = new TreeSet<Lexeme>();
 		Pattern pattern;
 		Matcher matcher;
 		
@@ -27,15 +25,11 @@ public class LexicalAnalysis {
 			}
 		}
 		
-		
-		// for testing only
-		for(Lexeme l : Lexemes) {
-			System.out.println(l.matchedWord+" "+l.relatedToken.name);
-		}
+		return Lexemes;
 		
 	}
 	
-	public void createTokens(){
+	public static void createTokens(Vector<Token>Tokens){
 		
 		// ID,Char
 		
@@ -118,13 +112,16 @@ public class LexicalAnalysis {
 		Tokens.add(new Token("LEFT_ROUND_B","\\("));
 		Tokens.add(new Token("RIGHT_ROUND_B","\\)"));
 		
+		//Identifier
+		Tokens.add(new Token("IDENTIFIER","\\b[a-zA-Z_]\\w*\\b"));
+		
 		//This Should be the Last Token to be Checked
 		Tokens.add(new Token("ERROR","\\S+"));
 
 		
 	}
 	
-	private String repeatSpaces(int times) {
+	private static String repeatSpaces(int times) {
         return new String(new char[times]).replace("\0", " ");
     }
 }
