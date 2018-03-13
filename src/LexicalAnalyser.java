@@ -33,9 +33,10 @@ public class LexicalAnalyser {
 		
 		// ID,Char
 		
-		Tokens.add(new Token("M_COMMENTS","-	\\/\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*\\/"));
+		Tokens.add(new Token("M_COMMENTS","\\/\\*(.|[\\r\\n])*?\\*\\/"));
 		Tokens.add(new Token("S_COMMENTS","\\/\\/.*\\n"));
 		Tokens.add(new Token("STRING_LITERAL","\".*\""));
+		Tokens.add(new Token("A_CHAR","'.?'|'[\\n|\\r|\\t|\\s]'"));
 		
 		Tokens.add(new Token("FLOAT_LITERAL","(\\b)*\\d*\\.\\d+\\b"));
 		Tokens.add(new Token("INTEGRAL_LITERAL","\\b\\d+\\b"));
