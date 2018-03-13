@@ -11,7 +11,7 @@ public class LexicalAnalysis {
 		createTokens();
 	}
 	
-	public void extractTokens(String text){
+	public void extractTokens(StringBuffer text){
 		Set<Lexeme> Lexemes = new TreeSet<>();
 		Pattern pattern;
 		Matcher matcher;
@@ -22,74 +22,79 @@ public class LexicalAnalysis {
 			
 			while(matcher.find()){
 				Lexemes.add(new Lexeme(matcher.group(), matcher.start(), Tokens.get(i)));
-				text = text.replace(matcher.group(), repeatSpaces(matcher.group().length()));
+				text.replace(matcher.start(),matcher.group().length()+matcher.start(), 
+							repeatSpaces(matcher.group().length()));
 			}
 		}
 		
+		
 		// for testing only
 		for(Lexeme l : Lexemes) {
-			System.out.println(l.matchedWord);
+			System.out.println(l.matchedWord+" "+l.relatedToken.name);
 		}
 		
 	}
 	
 	public void createTokens(){
 		
-		// you should add here your tokens with its suitable order 
-		// ( i guess that all will be after mine
+		// ID,Char
+		
 		Tokens.add(new Token("M_COMMENTS","-	\\/\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*\\/"));
 		Tokens.add(new Token("S_COMMENTS","\\/\\/.*\\n"));
 		Tokens.add(new Token("STRING_LITERAL","\".*\""));
 		
-		Tokens.add(new Token("SYSTEM.OUT.PRINTLN","System.out.println"));
-		Tokens.add(new Token("IF","if"));
-		Tokens.add(new Token("INT","int"));
-		Tokens.add(new Token("ELSE","else"));
-		Tokens.add(new Token("MAIN","main"));
-		Tokens.add(new Token("THIS","this"));
-		Tokens.add(new Token("TRUE","true"));
-		Tokens.add(new Token("VOID","void"));
-		Tokens.add(new Token("CLASS","class"));
-		Tokens.add(new Token("FALSE","false"));
-		Tokens.add(new Token("WHILE","while"));
-		Tokens.add(new Token("LENGTH","length"));
-		Tokens.add(new Token("PUBLIC","public"));
-		Tokens.add(new Token("PRIVATE","private"));
-		Tokens.add(new Token("PROTECTED","protected"));
-		Tokens.add(new Token("RETURN","return"));
-		Tokens.add(new Token("STATIC","static"));
-		Tokens.add(new Token("NEW","new"));
-		Tokens.add(new Token("STRING","string"));
-		Tokens.add(new Token("FLOAT","float"));
-		Tokens.add(new Token("CHARACTER","char"));
-		Tokens.add(new Token("BOOLEAN","boolean"));
-		Tokens.add(new Token("EXTENDS","extends"));
-		Tokens.add(new Token("NULL","null"));
-		Tokens.add(new Token("ABSTRACT","abstract"));
-		Tokens.add(new Token("ASSERT","assert"));
-		Tokens.add(new Token("BREAK","break"));
-		Tokens.add(new Token("CONTINUE","continue"));
-		Tokens.add(new Token("BYTE","byte"));
-		Tokens.add(new Token("CASE","case"));
-		Tokens.add(new Token("CATCH","catch"));
-		Tokens.add(new Token("CONST","const"));
-		Tokens.add(new Token("DEFAULT","default"));
-		Tokens.add(new Token("DO","do"));
-		Tokens.add(new Token("DOUBLE","double"));
-		Tokens.add(new Token("ENUM","ENUM"));
-		Tokens.add(new Token("FINAL","final"));
-		Tokens.add(new Token("FINALY","finaly"));
-		Tokens.add(new Token("FOR","for"));
-		Tokens.add(new Token("GOTO","goto"));
-		Tokens.add(new Token("IMPLEMENTS","implements"));
-		Tokens.add(new Token("IMPORT","import"));
-		Tokens.add(new Token("INSTANCEOF","instanceof"));
-		Tokens.add(new Token("INTERFACE","interface"));
-		Tokens.add(new Token("SHORT","short"));
-		Tokens.add(new Token("SUPER","super"));
-		Tokens.add(new Token("SWITCH","switch"));
-		Tokens.add(new Token("THROW","throw"));
-		Tokens.add(new Token("TRY","try"));
+		Tokens.add(new Token("FLOAT_LITERAL","(\\b)*\\d*\\.\\d+\\b"));
+		Tokens.add(new Token("INTEGRAL_LITERAL","\\b\\d+\\b"));
+		
+		Tokens.add(new Token("SYSTEM.OUT.PRINTLN","\\bSystem.out.println\\b"));
+		Tokens.add(new Token("IF","\\bif\\b"));
+		Tokens.add(new Token("INT","\\bint\\b"));
+		Tokens.add(new Token("ELSE","\\belse\\b"));
+		Tokens.add(new Token("MAIN","\\bmain\\b"));
+		Tokens.add(new Token("THIS","\\bthis\\b"));
+		Tokens.add(new Token("TRUE","\\btrue\\b"));
+		Tokens.add(new Token("VOID","\\bvoid\\b"));
+		Tokens.add(new Token("CLASS","\\bclass\\b"));
+		Tokens.add(new Token("FALSE","\\bfalse\\b"));
+		Tokens.add(new Token("WHILE","\\bwhile\\b"));
+		Tokens.add(new Token("LENGTH","\\blength\\b"));
+		Tokens.add(new Token("PUBLIC","\\bpublic\\b"));
+		Tokens.add(new Token("PRIVATE","\\bprivate\\b"));
+		Tokens.add(new Token("PROTECTED","\\bprotected\\b"));
+		Tokens.add(new Token("RETURN","\\breturn\\b"));
+		Tokens.add(new Token("STATIC","\\bstatic\\b"));
+		Tokens.add(new Token("NEW","\\bnew\\b"));
+		Tokens.add(new Token("STRING","\\bstring\\b"));
+		Tokens.add(new Token("FLOAT","\\bfloat\\b"));
+		Tokens.add(new Token("CHARACTER","\\bchar\\b"));
+		Tokens.add(new Token("BOOLEAN","\\bboolean\\b"));
+		Tokens.add(new Token("EXTENDS","\\bextends\\b"));
+		Tokens.add(new Token("NULL","\\bnull\\b"));
+		Tokens.add(new Token("ABSTRACT","\\babstract\\b"));
+		Tokens.add(new Token("ASSERT","\\bassert\\b"));
+		Tokens.add(new Token("BREAK","\\bbreak\\b"));
+		Tokens.add(new Token("CONTINUE","\\bcontinue\\b"));
+		Tokens.add(new Token("BYTE","\\bbyte\\b"));
+		Tokens.add(new Token("CASE","\\bcase\\b"));
+		Tokens.add(new Token("CATCH","\\bcatch\\b"));
+		Tokens.add(new Token("CONST","\\bconst\\b"));
+		Tokens.add(new Token("DEFAULT","\\bdefault\\b"));
+		Tokens.add(new Token("DO","\\bdo\\b"));
+		Tokens.add(new Token("DOUBLE","\\bdouble\\b"));
+		Tokens.add(new Token("ENUM","\\bENUM\\b"));
+		Tokens.add(new Token("FINAL","\\bfinal\\b"));
+		Tokens.add(new Token("FINALY","\\bfinaly\\b"));
+		Tokens.add(new Token("FOR","\\bfor\\b"));
+		Tokens.add(new Token("GOTO","\\bgoto\\b"));
+		Tokens.add(new Token("IMPLEMENTS","\\bimplements\\b"));
+		Tokens.add(new Token("IMPORT","\\bimport\\b"));
+		Tokens.add(new Token("INSTANCEOF","\\binstanceof\\b"));
+		Tokens.add(new Token("INTERFACE","\\binterface\\b"));
+		Tokens.add(new Token("SHORT","\\bshort\\b"));
+		Tokens.add(new Token("SUPER","\\bsuper\\b"));
+		Tokens.add(new Token("SWITCH","\\bswitch\\b"));
+		Tokens.add(new Token("THROW","\\bthrow\\b"));
+		Tokens.add(new Token("TRY","\\btry\\b"));
 		
 		//Andrew
 		Tokens.add(new Token("EOL","$"));
@@ -114,7 +119,7 @@ public class LexicalAnalysis {
 		Tokens.add(new Token("RIGHT_ROUND_B","\\)"));
 		
 		//This Should be the Last Token to be Checked
-		Tokens.add(new Token("ERROR","\\S"));
+		Tokens.add(new Token("ERROR","\\S+"));
 
 		
 	}
