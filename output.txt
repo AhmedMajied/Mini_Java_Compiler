@@ -1,4 +1,9 @@
-<ERROR>: '\
-<ID>: n
-<ERROR>: '
+<A_CHAR>: '\\'
+<A_CHAR>: '\s'
+<A_CHAR>: '\n'
+<A_CHAR>: '\t'
+<A_CHAR>: 'x'
+<A_CHAR>: ''
+<A_CHAR>: ' '
+<EOL>: 
 <EOL>: 
