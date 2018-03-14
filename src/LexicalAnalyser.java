@@ -19,7 +19,6 @@ public class LexicalAnalyser {
 		for(int i=2;i<Tokens.size();i++){ // start from 2 as MComment and SComment are matched
 			pattern = Pattern.compile(Tokens.get(i).pattern);
 			matcher = pattern.matcher(text);
-
 			while(matcher.find()){
 				Lexemes.add(new Lexeme(matcher.group(), matcher.start(), Tokens.get(i)));
 				text.replace(matcher.start(),matcher.group().length()+matcher.start(), 
@@ -32,14 +31,14 @@ public class LexicalAnalyser {
 	}
 	
 	public static void createTokens(Vector<Token>Tokens){
-		
+
 		// case char x = '\\';  Mariam and don't forget to solve char
-		
 		Tokens.add(new Token("M_COMMENTS","\\/\\*(.|[\\r\\n])*?\\*\\/"));
 		Tokens.add(new Token("S_COMMENTS","\\/\\/.*"));
 		Tokens.add(new Token("STRING_LITERAL","\".*\""));
-		Tokens.add(new Token("A_CHAR","'[\\\\]?.?'"));
-		
+		//Tokens.add(new Token("A_CHAR","'.'|'[\\\\].'"));
+		Tokens.add(new Token("A_CHAR","'.'|'[\\\\][A-Za-z0-9\\\\]'"));
+
 		Tokens.add(new Token("FLOAT_LITERAL","(\\b)*\\d*\\.\\d+\\b"));
 		Tokens.add(new Token("INTEGRAL_LITERAL","\\b\\d+\\b"));
 		
