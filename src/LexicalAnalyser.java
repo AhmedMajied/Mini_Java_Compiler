@@ -14,14 +14,16 @@ public class LexicalAnalyser {
 		Pattern pattern;
 		Matcher matcher;
 		
-		for(int i=0;i<Tokens.size();i++){
+		matchComments(Tokens,Lexemes,text);
+		
+		for(int i=2;i<Tokens.size();i++){ // start from 2 as MComment and SComment are matched
 			pattern = Pattern.compile(Tokens.get(i).pattern);
 			matcher = pattern.matcher(text);
-			
+
 			while(matcher.find()){
 				Lexemes.add(new Lexeme(matcher.group(), matcher.start(), Tokens.get(i)));
 				text.replace(matcher.start(),matcher.group().length()+matcher.start(), 
-							repeatSpaces(matcher.group().length()));
+							repeatSpaces(matcher.group().length())); // make it end
 			}
 		}
 		
@@ -31,6 +33,7 @@ public class LexicalAnalyser {
 	
 	public static void createTokens(Vector<Token>Tokens){
 		
+		// case char x = '\\';  Mariam and don't forget to solve char
 		
 		Tokens.add(new Token("M_COMMENTS","\\/\\*(.|[\\r\\n])*?\\*\\/"));
 		Tokens.add(new Token("S_COMMENTS","\\/\\/.*"));
@@ -126,6 +129,55 @@ public class LexicalAnalyser {
 		
 		//This Should be the Last Token to be Checked
 		Tokens.add(new Token("ERROR","\\S+"));
+	}
+
+	private static void matchComments(Vector<Token> Tokens,Set<Lexeme> Lexemes,StringBuffer text){
+		boolean MCommentOpenFound = false; // (/*)
+		boolean SCommentOpenFound = false; // (//)
+		boolean StringOpenFound = false;
+		int MCommentStartIndex = -1, SCommentStartIndex = -1;
+		
+		for(int i=0;i<text.length()-1;i++){
+			if(text.charAt(i) == '/' && text.charAt(i+1) == '*' && !MCommentOpenFound 
+					&& !SCommentOpenFound && !StringOpenFound){
+				MCommentOpenFound = true;
+				MCommentStartIndex = i;
+			}
+			else if(text.charAt(i) == '/' && text.charAt(i+1) == '/' && !SCommentOpenFound 
+					&& !MCommentOpenFound && !StringOpenFound){
+				SCommentOpenFound = true;
+				SCommentStartIndex = i;
+			}
+			else if(text.charAt(i) == '*' && text.charAt(i+1) == '/' && MCommentOpenFound &&
+					!SCommentOpenFound && !StringOpenFound){
+				
+				Lexemes.add(new Lexeme(text.substring(MCommentStartIndex,i+2), MCommentStartIndex, Tokens.get(0)));
+				text.replace(MCommentStartIndex,i+2, repeatSpaces(i+2-MCommentStartIndex));
+				MCommentOpenFound = false;
+				i++;
+			}
+			else if((text.charAt(i) == '\n' || text.charAt(i+1) == '\n' || i+2 == text.length()) && 
+					SCommentOpenFound && !MCommentOpenFound && !StringOpenFound){ 
+				if(text.charAt(i) == '\n'){
+					Lexemes.add(new Lexeme(text.substring(SCommentStartIndex,i+1), SCommentStartIndex,
+															Tokens.get(1)));
+					text.replace(SCommentStartIndex,i+1, repeatSpaces(i+1-SCommentStartIndex));
+				}
+				else{
+					Lexemes.add(new Lexeme(text.substring(SCommentStartIndex,i+2), SCommentStartIndex,
+															Tokens.get(1)));
+					text.replace(SCommentStartIndex,i+2, repeatSpaces(i+2-SCommentStartIndex));
+				}
+				SCommentOpenFound = false;
+				i++;
+			}
+			else if(text.charAt(i) == '"' && !MCommentOpenFound && !SCommentOpenFound){
+				if(StringOpenFound)
+					StringOpenFound = false;
+				else
+					StringOpenFound = true;
+			}
+		}	
 	}
 	
 	private static String repeatSpaces(int times) {

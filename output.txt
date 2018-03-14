@@ -1,21 +1,4 @@
-<VOID>: void
-<INT>: int
-<IDENTIFIER>: x
-<EQUAL>: =
-<INTEGRAL_LITERAL>: 5
-<SEMICOLON>: ;
-<PLUS>: +
-<MINUS>: -
-<INTEGRAL_LITERAL>: 8
-<LEFT_ROUND_B>: (
-<RIGHT_ROUND_B>: )
-<M_COMMENTS>: /*{}*/
-<M_COMMENTS>: /**/
-<M_COMMENTS>: /* 
-
-
-
-
-*/
-<RIGHT_CURLY_B>: }
+<ERROR>: '\
+<ID>: n
+<ERROR>: '
 <EOL>: 
