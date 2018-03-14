@@ -31,7 +31,6 @@ public class LexicalAnalyser {
 	}
 	
 	public static void createTokens(Vector<Token>Tokens){
-
 		// case char x = '\\';  Mariam and don't forget to solve char
 		Tokens.add(new Token("M_COMMENTS","\\/\\*(.|[\\r\\n])*?\\*\\/"));
 		Tokens.add(new Token("S_COMMENTS","\\/\\/.*"));
