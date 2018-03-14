@@ -31,16 +31,16 @@ public class LexicalAnalyser {
 	
 	public static void createTokens(Vector<Token>Tokens){
 		
-		// ID,Char
 		
 		Tokens.add(new Token("M_COMMENTS","\\/\\*(.|[\\r\\n])*?\\*\\/"));
-		Tokens.add(new Token("S_COMMENTS","\\/\\/.*\\n"));
+		Tokens.add(new Token("S_COMMENTS","\\/\\/.*"));
 		Tokens.add(new Token("STRING_LITERAL","\".*\""));
 		Tokens.add(new Token("A_CHAR","'.?'|'[\\n|\\r|\\t|\\s]'"));
 		
 		Tokens.add(new Token("FLOAT_LITERAL","(\\b)*\\d*\\.\\d+\\b"));
 		Tokens.add(new Token("INTEGRAL_LITERAL","\\b\\d+\\b"));
 		
+		// KeyWords
 		Tokens.add(new Token("SYSTEM.OUT.PRINTLN","\\bSystem.out.println\\b"));
 		Tokens.add(new Token("IF","\\bif\\b"));
 		Tokens.add(new Token("INT","\\bint\\b"));
@@ -59,7 +59,7 @@ public class LexicalAnalyser {
 		Tokens.add(new Token("RETURN","\\breturn\\b"));
 		Tokens.add(new Token("STATIC","\\bstatic\\b"));
 		Tokens.add(new Token("NEW","\\bnew\\b"));
-		Tokens.add(new Token("STRING","\\bstring\\b"));
+		Tokens.add(new Token("STRING","\\bString\\b"));
 		Tokens.add(new Token("FLOAT","\\bfloat\\b"));
 		Tokens.add(new Token("CHARACTER","\\bchar\\b"));
 		Tokens.add(new Token("BOOLEAN","\\bboolean\\b"));
@@ -83,6 +83,7 @@ public class LexicalAnalyser {
 		Tokens.add(new Token("GOTO","\\bgoto\\b"));
 		Tokens.add(new Token("IMPLEMENTS","\\bimplements\\b"));
 		Tokens.add(new Token("IMPORT","\\bimport\\b"));
+		Tokens.add(new Token("PACKAGE","\\bpackage\\b"));
 		Tokens.add(new Token("INSTANCEOF","\\binstanceof\\b"));
 		Tokens.add(new Token("INTERFACE","\\binterface\\b"));
 		Tokens.add(new Token("SHORT","\\bshort\\b"));
@@ -91,21 +92,28 @@ public class LexicalAnalyser {
 		Tokens.add(new Token("THROW","\\bthrow\\b"));
 		Tokens.add(new Token("TRY","\\btry\\b"));
 		
-		//Andrew
 		Tokens.add(new Token("EOL","$"));
 		Tokens.add(new Token("PLUS","\\+"));
 		Tokens.add(new Token("COMMA",","));
 		Tokens.add(new Token("DOT","\\."));
+		
+		Tokens.add(new Token("LESS_EQ","<="));
+		Tokens.add(new Token("GREATER_EQ",">="));
+		Tokens.add(new Token("NOT_EQUAL","!="));
+		Tokens.add(new Token("EQUAL","=="));
+		Tokens.add(new Token("ASSIGNMENT","="));
 		Tokens.add(new Token("NOT","\\!"));
-		Tokens.add(new Token("EQUAL","="));
 		Tokens.add(new Token("SEMICOLON",";"));
-		Tokens.add(new Token("AND","&&"));
 		Tokens.add(new Token("MINUS","\\-"));
 		Tokens.add(new Token("MULTIPLY","\\*"));
+		Tokens.add(new Token("DIV","\\/"));
+		Tokens.add(new Token("MOD","%"));
 		Tokens.add(new Token("LESSTHAN","<"));
 		Tokens.add(new Token("GREATERTHAN",">"));
+		Tokens.add(new Token("OR","\\|\\|"));
+		Tokens.add(new Token("AND","&&"));
 		
-		
+		// Parentheses
 		Tokens.add(new Token("LEFT_CURLY_B","\\{"));
 		Tokens.add(new Token("RIGHT_CURLY_B","\\}"));
 		Tokens.add(new Token("LEFT_SQUARE_B","\\["));
@@ -114,12 +122,10 @@ public class LexicalAnalyser {
 		Tokens.add(new Token("RIGHT_ROUND_B","\\)"));
 		
 		//Identifier
-		Tokens.add(new Token("IDENTIFIER","\\b[a-zA-Z_]\\w*\\b"));
+		Tokens.add(new Token("ID","\\b[a-zA-Z_]\\w*\\b"));
 		
 		//This Should be the Last Token to be Checked
 		Tokens.add(new Token("ERROR","\\S+"));
-
-		
 	}
 	
 	private static String repeatSpaces(int times) {
