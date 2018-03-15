@@ -1,10 +1,24 @@
-<A_CHAR>: '\'
-<A_CHAR>: '\s'
-<A_CHAR>: '\n'
-<A_CHAR>: '\t'
-<A_CHAR>: 'x'
-<A_CHAR>: '\\'
-<ERROR>: ''
-<A_CHAR>: ' '
-<A_CHAR>: '\6'
-<EOL>: 
+< ERROR > : '\'
+< EOL > : End Of Line
+< ERROR > : '\
+< ID > : s
+< ERROR > : '
+< EOL > : End Of Line
+< A_CHAR > : '\n'
+< EOL > : End Of Line
+< A_CHAR > : '\t'
+< EOL > : End Of Line
+< A_CHAR > : 'x'
+< EOL > : End Of Line
+< A_CHAR > : '\\'
+< EOL > : End Of Line
+< ERROR > : ''
+< EOL > : End Of Line
+< A_CHAR > : ' '
+< EOL > : End Of Line
+< ERROR > : '\
+< INTEGRAL_LITERAL > : 6
+< ERROR > : '
+< EOL > : End Of Line
+< A_CHAR > : '/'
+< EOL > : End Of Line

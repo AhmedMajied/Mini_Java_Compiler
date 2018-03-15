@@ -37,17 +37,14 @@ public class LexicalAnalyser {
 		Tokens.add(new Token("STRING_LITERAL","\".*\""));
 		//Tokens.add(new Token("A_CHAR","'.'|'[\\\\].'"));
 		
-		
-		
-		
-		
+		char x=' ';
+		Tokens.add(new Token("A_CHAR","'[A-Za-z0-9_@!`~#$%^&*()-+=|{}<>?/, ]'|'[\\\\][b|t|n|f|r]'|'\\\"'|'\''|'\\\\\\\\'"));
 		// char is   (\b  \t  \n  \f  \r  \"  \'  \\) only
-		Tokens.add(new Token("A_CHAR","'.'|'[\\\\][A-Za-z0-9\\\\]'"));// '/a' is not char
+		//Tokens.add(new Token("A_CHAR","'.'|'[\\\\][A-Za-z0-9\\\\]'"));// '/a' is not char
 		
 		
 		
 		
-
 		Tokens.add(new Token("FLOAT_LITERAL","(\\b)*\\d*\\.\\d+\\b"));
 		Tokens.add(new Token("INTEGRAL_LITERAL","\\b\\d+\\b"));
 		
