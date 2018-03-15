@@ -31,13 +31,14 @@ public class LexicalAnalyser {
 	}
 	
 	public static void createTokens(Vector<Token>Tokens){
-		
 		Tokens.add(new Token("M_COMMENTS","\\/\\*(.|[\\r\\n])*?\\*\\/"));
 		Tokens.add(new Token("S_COMMENTS","\\/\\/.*"));
 		Tokens.add(new Token("STRING_LITERAL","none"));
 		
-		Tokens.add(new Token("ERROR","'[('|\\n|\\\\)*]'|'[^(\\\\b|\\\\n|\\\\t|\\\\f|\\\\r|\\\\'|\\\\\"|\\\\\\\\)]*'"));
-		Tokens.add(new Token("A_CHAR","'[^('|\\n|\\\\)]'|'(\\\\b|\\\\n|\\\\t|\\\\f|\\\\r|\\\\'|\\\\\"|\\\\\\\\)'"));
+		//Tokens.add(new Token("ERROR","'[('|\\n|\\\\)*]'|'[^(\\\\b|\\\\n|\\\\t|\\\\f|\\\\r|\\\\'|\\\\\"|\\\\\\\\)]*'"));
+		//Tokens.add(new Token("A_CHAR","'[^('|\\n|\\\\)]'|'(\\\\b|\\\\n|\\\\t|\\\\f|\\\\r|\\\\'|\\\\\"|\\\\\\\\)'"));
+		Tokens.add(new Token("A_CHAR","\'\\\\\'\'|\'[^']\'|\'\\\\[nbfrt\\\\\"]\'"));
+		
 		
 		Tokens.add(new Token("FLOAT_LITERAL","(\\b)*\\d*\\.\\d+\\b"));
 		Tokens.add(new Token("INTEGRAL_LITERAL","\\b\\d+\\b"));
