@@ -1,6 +1,15 @@
-< STRING_LITERAL > : "h"
-< ID > : agsvas
-< ERROR > : "
+< ERROR > : '5'
 < EOL > : End Of Line
-< EOL > : End Of Line
-< EOL > : End Of Line
+< ERROR > : '\'
+< ERROR > : '
+'
+< ERROR > : \\
+< ERROR > : '
+'
+< ERROR > : \
+< ID > : a
+< ERROR > : '
+'
+< ERROR > : \
+< ID > : n
+< ERROR > : '
