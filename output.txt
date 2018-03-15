@@ -1,7 +1,3 @@
-< CHARACTER > : char
-< ID > : x
-< ASSIGNMENT > : =
-< A_CHAR > : '\n'
-< SEMICOLON > : ;
+< STRING_LITERAL > : ""string""
 < EOL > : End Of Line
 < EOL > : End Of Line
