@@ -14,7 +14,7 @@ public class MAIN {
 		Set<Lexeme> Lexemes = LexicalAnalyser.extractTokens(text);
 		PrintWriter writer = new PrintWriter("output.txt", "UTF-8");
 		for (Lexeme l : Lexemes) {
-			writer.println('<' + l.relatedToken.name + ">: " + l.matchedWord);
+			writer.println("< " + l.relatedToken.name + " > : " + ((l.relatedToken.name.equals("EOL"))?"End Of Line":l.matchedWord));
 		}
 		writer.close();
 	}
