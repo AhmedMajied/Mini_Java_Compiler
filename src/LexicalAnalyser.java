@@ -14,9 +14,9 @@ public class LexicalAnalyser {
 		Pattern pattern;
 		Matcher matcher;
 		
-		matchComments(Tokens,Lexemes,text);
+		matchComments_strings(Tokens,Lexemes,text);
 		
-		for(int i=2;i<Tokens.size();i++){ // start from 2 as MComment and SComment are matched
+		for(int i=3;i<Tokens.size();i++){ // start from 3 as string,MComment and SComment are matched
 			pattern = Pattern.compile(Tokens.get(i).pattern);
 			matcher = pattern.matcher(text);
 			while(matcher.find()){
@@ -31,19 +31,13 @@ public class LexicalAnalyser {
 	}
 	
 	public static void createTokens(Vector<Token>Tokens){
-		// case char x = '\\';  Mariam and don't forget to solve char
+		
 		Tokens.add(new Token("M_COMMENTS","\\/\\*(.|[\\r\\n])*?\\*\\/"));
 		Tokens.add(new Token("S_COMMENTS","\\/\\/.*"));
-		Tokens.add(new Token("STRING_LITERAL","\".*\""));
-		//Tokens.add(new Token("A_CHAR","'.'|'[\\\\].'"));
+		Tokens.add(new Token("STRING_LITERAL","none"));
+		
 		Tokens.add(new Token("ERROR","'[('|\\n|\\\\)*]'|'[^(\\\\b|\\\\n|\\\\t|\\\\f|\\\\r|\\\\'|\\\\\"|\\\\\\\\)]*'"));
 		Tokens.add(new Token("A_CHAR","'[^('|\\n|\\\\)]'|'(\\\\b|\\\\n|\\\\t|\\\\f|\\\\r|\\\\'|\\\\\"|\\\\\\\\)'"));
-		//Tokens.add(new Token("A_CHAR","'[A-Za-z0-9_@!`~#$%^&*()-+=|{}<>?/, ]'|'[\\\\][b|t|n|f|r]'|'\\\"'|'\''|'\\\\\\\\'"));
-		// char is   (\b  \t  \n  \f  \r  \"  \'  \\) only
-		//Tokens.add(new Token("A_CHAR","'.'|'[\\\\][A-Za-z0-9\\\\]'"));// '/a' is not char
-		
-		
-		
 		
 		Tokens.add(new Token("FLOAT_LITERAL","(\\b)*\\d*\\.\\d+\\b"));
 		Tokens.add(new Token("INTEGRAL_LITERAL","\\b\\d+\\b"));
@@ -136,51 +130,61 @@ public class LexicalAnalyser {
 		Tokens.add(new Token("ERROR","\\S+"));
 	}
 
-	private static void matchComments(Vector<Token> Tokens,Set<Lexeme> Lexemes,StringBuffer text){
+	private static void matchComments_strings(Vector<Token> Tokens,Set<Lexeme> Lexemes,StringBuffer text){
 		boolean MCommentOpenFound = false; // (/*)
 		boolean SCommentOpenFound = false; // (//)
 		boolean StringOpenFound = false;
-		int MCommentStartIndex = -1, SCommentStartIndex = -1;
+		int MCommentStartIndex = -1, SCommentStartIndex = -1 , StringStartIndex = -1;
 		
-		for(int i=0;i<text.length()-1;i++){
-			if(text.charAt(i) == '/' && text.charAt(i+1) == '*' && !MCommentOpenFound 
-					&& !SCommentOpenFound && !StringOpenFound){
+		for(int i=0;i<text.length();i++){
+			if(i+1 < text.length() && text.charAt(i) == '/' && text.charAt(i+1) == '*' && 
+					!MCommentOpenFound && !SCommentOpenFound && !StringOpenFound){
 				MCommentOpenFound = true;
 				MCommentStartIndex = i;
 			}
-			else if(text.charAt(i) == '/' && text.charAt(i+1) == '/' && !SCommentOpenFound 
-					&& !MCommentOpenFound && !StringOpenFound){
+			else if(i+1 < text.length() && text.charAt(i) == '/' && text.charAt(i+1) == '/' && 
+					!SCommentOpenFound && !MCommentOpenFound && !StringOpenFound){
 				SCommentOpenFound = true;
 				SCommentStartIndex = i;
 			}
-			else if(text.charAt(i) == '*' && text.charAt(i+1) == '/' && MCommentOpenFound &&
-					!SCommentOpenFound && !StringOpenFound){
+			else if(i+1 < text.length() && text.charAt(i) == '*' && text.charAt(i+1) == '/' &&
+					MCommentOpenFound && !SCommentOpenFound && !StringOpenFound){
 				
 				Lexemes.add(new Lexeme(text.substring(MCommentStartIndex,i+2), MCommentStartIndex, Tokens.get(0)));
 				text.replace(MCommentStartIndex,i+2, repeatSpaces(i+2-MCommentStartIndex));
 				MCommentOpenFound = false;
 				i++;
 			}
-			else if((text.charAt(i) == '\n' || text.charAt(i+1) == '\n' || i+2 == text.length()) && 
+			else if((text.charAt(i) == '\n' || i+1 == text.length()) && 
 					SCommentOpenFound && !MCommentOpenFound && !StringOpenFound){ 
 				if(text.charAt(i) == '\n'){
+					Lexemes.add(new Lexeme(text.substring(SCommentStartIndex,i), SCommentStartIndex,
+															Tokens.get(1)));
+					text.replace(SCommentStartIndex,i, repeatSpaces(i-SCommentStartIndex));
+				}
+				else{
 					Lexemes.add(new Lexeme(text.substring(SCommentStartIndex,i+1), SCommentStartIndex,
 															Tokens.get(1)));
 					text.replace(SCommentStartIndex,i+1, repeatSpaces(i+1-SCommentStartIndex));
 				}
-				else{
-					Lexemes.add(new Lexeme(text.substring(SCommentStartIndex,i+2), SCommentStartIndex,
-															Tokens.get(1)));
-					text.replace(SCommentStartIndex,i+2, repeatSpaces(i+2-SCommentStartIndex));
-				}
 				SCommentOpenFound = false;
-				i++;
 			}
 			else if(text.charAt(i) == '"' && !MCommentOpenFound && !SCommentOpenFound){
-				if(StringOpenFound)
-					StringOpenFound = false;
-				else
+				if(StringOpenFound){
+					if(text.charAt(i-1) != '\\'){
+						Lexemes.add(new Lexeme(text.substring(StringStartIndex,i+1), StringStartIndex,
+							Tokens.get(2)));
+						text.replace(StringStartIndex,i+1, repeatSpaces(i+1-StringStartIndex));
+						StringOpenFound = false;
+					}
+				}
+				else{
 					StringOpenFound = true;
+					StringStartIndex = i;
+				}
+			}
+			else if(text.charAt(i) == '\n'){
+				StringOpenFound = false;
 			}
 		}	
 	}

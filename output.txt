@@ -1,3 +1,6 @@
-< STRING_LITERAL > : ""string""
+< STRING_LITERAL > : "h"
+< ID > : agsvas
+< ERROR > : "
+< EOL > : End Of Line
 < EOL > : End Of Line
 < EOL > : End Of Line
