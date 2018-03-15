@@ -36,9 +36,9 @@ public class LexicalAnalyser {
 		Tokens.add(new Token("S_COMMENTS","\\/\\/.*"));
 		Tokens.add(new Token("STRING_LITERAL","\".*\""));
 		//Tokens.add(new Token("A_CHAR","'.'|'[\\\\].'"));
+		Tokens.add(new Token("A_CHAR","'[^']'|'(\\\\b|\\\\n|\\\\t|\\\\f|\\\\r|\\\\'\\\\\")'"));
 		
-		char x=' ';
-		Tokens.add(new Token("A_CHAR","'[A-Za-z0-9_@!`~#$%^&*()-+=|{}<>?/, ]'|'[\\\\][b|t|n|f|r]'|'\\\"'|'\''|'\\\\\\\\'"));
+		//Tokens.add(new Token("A_CHAR","'[A-Za-z0-9_@!`~#$%^&*()-+=|{}<>?/, ]'|'[\\\\][b|t|n|f|r]'|'\\\"'|'\''|'\\\\\\\\'"));
 		// char is   (\b  \t  \n  \f  \r  \"  \'  \\) only
 		//Tokens.add(new Token("A_CHAR","'.'|'[\\\\][A-Za-z0-9\\\\]'"));// '/a' is not char
 		

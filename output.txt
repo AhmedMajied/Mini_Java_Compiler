@@ -1,4 +1,4 @@
-< ERROR > : '\'
+< A_CHAR > : '\'
 < EOL > : End Of Line
 < ERROR > : '\
 < ID > : s
@@ -10,7 +10,7 @@
 < EOL > : End Of Line
 < A_CHAR > : 'x'
 < EOL > : End Of Line
-< A_CHAR > : '\\'
+< ERROR > : '\\'
 < EOL > : End Of Line
 < ERROR > : ''
 < EOL > : End Of Line
