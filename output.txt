@@ -1,24 +1,7 @@
-< A_CHAR > : '\'
-< EOL > : End Of Line
-< ERROR > : '\
-< ID > : s
-< ERROR > : '
-< EOL > : End Of Line
+< CHARACTER > : char
+< ID > : x
+< ASSIGNMENT > : =
 < A_CHAR > : '\n'
+< SEMICOLON > : ;
 < EOL > : End Of Line
-< A_CHAR > : '\t'
-< EOL > : End Of Line
-< A_CHAR > : 'x'
-< EOL > : End Of Line
-< ERROR > : '\\'
-< EOL > : End Of Line
-< ERROR > : ''
-< EOL > : End Of Line
-< A_CHAR > : ' '
-< EOL > : End Of Line
-< ERROR > : '\
-< INTEGRAL_LITERAL > : 6
-< ERROR > : '
-< EOL > : End Of Line
-< A_CHAR > : '/'
 < EOL > : End Of Line
