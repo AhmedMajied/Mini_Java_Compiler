@@ -1,27 +1,5 @@
-< A_CHAR > : '5'
+< STRING > : String
+< ID > : x
+< SEMICOLON > : ;
 < EOL > : End Of Line
-< A_CHAR > : '\''
 < EOL > : End Of Line
-< A_CHAR > : '\\'
-< EOL > : End Of Line
-< ERROR > : '\
-< ID > : a
-< ERROR > : '
-< EOL > : End Of Line
-< A_CHAR > : '\n'
-< EOL > : End Of Line
-< A_CHAR > : '\"'
-< EOL > : End Of Line
-< A_CHAR > : '\t'
-< EOL > : End Of Line
-< A_CHAR > : '\b'
-< EOL > : End Of Line
-< A_CHAR > : '\f'
-< EOL > : End Of Line
-< A_CHAR > : '\r'
-< EOL > : End Of Line
-< ERROR > : '''
-< EOL > : End Of Line
-< ERROR > : '
-< EOL > : End Of Line
-< ERROR > : '

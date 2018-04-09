@@ -1,3 +1,6 @@
+package com.analyzer;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.Vector;
@@ -7,10 +10,10 @@ import java.util.regex.Pattern;
 public class LexicalAnalyser {
 	
 	
-	public static Set<Lexeme> extractTokens(StringBuffer text){
+	public static PriorityQueue<Lexeme> extractTokens(StringBuffer text){
 		Vector<Token> Tokens = new Vector<Token>();
 		createTokens(Tokens);
-		Set<Lexeme> Lexemes = new TreeSet<Lexeme>();
+		PriorityQueue<Lexeme> Lexemes = new PriorityQueue<Lexeme>(new LexemeComparator());
 		Pattern pattern;
 		Matcher matcher;
 		
@@ -131,7 +134,7 @@ public class LexicalAnalyser {
 		Tokens.add(new Token("ERROR","\\S+"));
 	}
 
-	private static void matchComments_strings(Vector<Token> Tokens,Set<Lexeme> Lexemes,StringBuffer text){
+	private static void matchComments_strings(Vector<Token> Tokens,PriorityQueue<Lexeme> lexemes,StringBuffer text){
 		boolean MCommentOpenFound = false; // (/*)
 		boolean SCommentOpenFound = false; // (//)
 		boolean StringOpenFound = false;
@@ -151,7 +154,7 @@ public class LexicalAnalyser {
 			else if(i+1 < text.length() && text.charAt(i) == '*' && text.charAt(i+1) == '/' &&
 					MCommentOpenFound && !SCommentOpenFound && !StringOpenFound){
 				
-				Lexemes.add(new Lexeme(text.substring(MCommentStartIndex,i+2), MCommentStartIndex, Tokens.get(0)));
+				lexemes.add(new Lexeme(text.substring(MCommentStartIndex,i+2), MCommentStartIndex, Tokens.get(0)));
 				text.replace(MCommentStartIndex,i+2, repeatSpaces(i+2-MCommentStartIndex));
 				MCommentOpenFound = false;
 				i++;
@@ -159,12 +162,12 @@ public class LexicalAnalyser {
 			else if((text.charAt(i) == '\n' || i+1 == text.length()) && 
 					SCommentOpenFound && !MCommentOpenFound && !StringOpenFound){ 
 				if(text.charAt(i) == '\n'){
-					Lexemes.add(new Lexeme(text.substring(SCommentStartIndex,i), SCommentStartIndex,
+					lexemes.add(new Lexeme(text.substring(SCommentStartIndex,i), SCommentStartIndex,
 															Tokens.get(1)));
 					text.replace(SCommentStartIndex,i, repeatSpaces(i-SCommentStartIndex));
 				}
 				else{
-					Lexemes.add(new Lexeme(text.substring(SCommentStartIndex,i+1), SCommentStartIndex,
+					lexemes.add(new Lexeme(text.substring(SCommentStartIndex,i+1), SCommentStartIndex,
 															Tokens.get(1)));
 					text.replace(SCommentStartIndex,i+1, repeatSpaces(i+1-SCommentStartIndex));
 				}
@@ -173,7 +176,7 @@ public class LexicalAnalyser {
 			else if(text.charAt(i) == '"' && !MCommentOpenFound && !SCommentOpenFound){
 				if(StringOpenFound){
 					if(text.charAt(i-1) != '\\'){
-						Lexemes.add(new Lexeme(text.substring(StringStartIndex,i+1), StringStartIndex,
+						lexemes.add(new Lexeme(text.substring(StringStartIndex,i+1), StringStartIndex,
 							Tokens.get(2)));
 						text.replace(StringStartIndex,i+1, repeatSpaces(i+1-StringStartIndex));
 						StringOpenFound = false;

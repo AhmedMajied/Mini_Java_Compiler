@@ -1,3 +1,4 @@
+package com.analyzer;
 
 public class Token {
 	public String name;
