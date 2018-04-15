@@ -9,6 +9,8 @@ public class BracketExpressionTerminalPart extends ExpressionTerminalPart{
 	
 
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
+		if(lexemes.isEmpty())
+			return false;
 		Lexeme l = lexemes.peek();
 		if (l.relatedToken.name.equals("LEFT_ROUND_B")) {
 			lexemes.poll();

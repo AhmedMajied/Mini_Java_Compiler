@@ -11,28 +11,29 @@ public class ExpressionExpressionDash extends ExpressionDash {
 	@Override
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
 		Lexeme l = lexemes.peek();
-		if (l.relatedToken.name.equals("LEFT_SQUARE_B")) {
-			expr = new Expression();
-			if (expr.parse(lexemes)) {
-				l = lexemes.peek();
-				if (l.relatedToken.name.equals("RIGHT_SQUARE_B")) {
-					exprDash = new OperatorExpressionDash();
-					if (expr.parse(lexemes))
-						return true;
-					else {
-						exprDash = new ExpressionExpressionDash();
-						if (expr.parse(lexemes)) {
-							return true;
-						} else {
-							exprDash = new DotExpressionDash();
-							if (expr.parse(lexemes)) {
-								return true;
-							}
-						}
-					}
+
+		if (!l.relatedToken.name.equals("LEFT_SQUARE_B"))
+			return false;
+		lexemes.poll();
+		expr = new Expression();
+		if (!expr.parse(lexemes))
+			return false;
+		exprDash = new OperatorExpressionDash();
+		if (!expr.parse(lexemes)) {
+			exprDash = new ExpressionExpressionDash();
+			if (!expr.parse(lexemes)) {
+				exprDash = new DotExpressionDash();
+				if (!expr.parse(lexemes)) {
+					exprDash = null;
 				}
 			}
 		}
-		return false;
+		l = lexemes.peek();
+		if (!l.relatedToken.name.equals("RIGHT_SQUARE_B")) {
+			return false;
+		}
+		lexemes.poll();
+
+		return true;
 	}
 }

@@ -7,8 +7,10 @@ import com.analyzer.Lexeme;
 public class IntExpressionTerminalPart extends ExpressionTerminalPart {
 	public int number;
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
+		if(lexemes.isEmpty())
+			return false;
 		Lexeme l = lexemes.peek();
-		if (l.relatedToken.name.equals("INTEGER")) {
+		if (l.relatedToken.name.equals("INTEGRAL_LITERAL")) {
 			lexemes.poll();
 			number=Integer.parseInt(l.matchedWord);
 			return true;

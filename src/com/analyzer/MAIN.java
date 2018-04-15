@@ -10,16 +10,45 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 
+import com.rules.BracketExpressionTerminalPart;
+import com.rules.BracketFollowingIdentifier;
+import com.rules.DataType;
+import com.rules.EqualFollowingIdentifier;
+import com.rules.Expression;
+import com.rules.ExpressionTerminalPart;
+import com.rules.FalseExpressionTerminalPart;
+import com.rules.FloatExpressionTerminalPart;
+import com.rules.FollowingDot;
+import com.rules.FollowingDotIdentifier;
+import com.rules.FollowingDotLength;
+import com.rules.FollowingIdentifier;
+import com.rules.FollowingNew;
+import com.rules.FollowingNewDatatType;
+import com.rules.FollowingNewIdentifier;
+import com.rules.Goal;
+import com.rules.Identifier;
+import com.rules.IdentifierStatement;
+import com.rules.IfStatement;
+import com.rules.IntExpressionTerminalPart;
+import com.rules.NewExpressionTerminalPart;
+import com.rules.NotExpressionTerminalPart;
+import com.rules.Operator;
+import com.rules.PrintStatement;
+import com.rules.ScopeStatement;
+import com.rules.Statement;
+import com.rules.ThisExpressionTerminalPart;
+import com.rules.TrueExpressionTerminalPart;
+import com.rules.Type;
+import com.rules.WhileStatement;
+
 public class MAIN {
 	public static void main(String[] args) throws IOException {
 		String input = new String(Files.readAllBytes(Paths.get("input.txt")), StandardCharsets.UTF_8);
 		StringBuffer text = new StringBuffer(input);
 		PriorityQueue<Lexeme> Lexemes = LexicalAnalyser.extractTokens(text);
-		PrintWriter writer = new PrintWriter("output.txt", "UTF-8");
-		while(!Lexemes.isEmpty()) {
-			Lexeme l = Lexemes.poll();
-			writer.println("< " + l.relatedToken.name + " > : " + ((l.relatedToken.name.equals("EOL"))?"End Of Line":l.matchedWord));
-		}
-		writer.close();
+//		while(!Lexemes.isEmpty())
+//			System.out.println(Lexemes.poll().relatedToken.name);
+		Goal g = new Goal();
+		System.out.println(g.parse(Lexemes));
 	}
 }

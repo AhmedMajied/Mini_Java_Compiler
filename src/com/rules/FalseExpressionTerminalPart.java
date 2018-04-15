@@ -6,6 +6,8 @@ import com.analyzer.Lexeme;
 
 public class FalseExpressionTerminalPart extends ExpressionTerminalPart{
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
+		if(lexemes.isEmpty())
+			return false;
 		Lexeme l = lexemes.peek();
 		if (l.relatedToken.name.equals("FALSE")) {
 			lexemes.poll();

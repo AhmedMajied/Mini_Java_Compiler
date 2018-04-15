@@ -80,31 +80,31 @@ public class MainClass {
 		lexemes.poll();
 		
 		stmt = new ScopeStatement();
-		if(stmt.parse(lexemes)){
-			return true;
-		}
-		stmt = new IfStatement();
-		if(stmt.parse(lexemes)){
-			return true;
-		}
-		stmt = new WhileStatement();
-		if(stmt.parse(lexemes)){
-			return true;
-		}
-		stmt = new PrintStatement();
-		if(stmt.parse(lexemes)){
-			return true;
-		}
-		stmt = new IdentifierStatement();
-		if(stmt.parse(lexemes)){
-			return true;
+		if(!stmt.parse(lexemes)){
+			stmt = new IfStatement();
+			if(!stmt.parse(lexemes)){
+				stmt = new WhileStatement();
+				if(!stmt.parse(lexemes)){
+					stmt = new PrintStatement();
+					if(!stmt.parse(lexemes)){
+						stmt = new IdentifierStatement();
+						
+						if(!stmt.parse(lexemes)){
+							return false;
+						}
+					}
+					
+				}
+				
+			}
+			
 		}
 		
+
 		l = lexemes.peek();
 		if(!l.relatedToken.name.equals("RIGHT_CURLY_B"))
 			return false;
 		lexemes.poll();
-		
 		l = lexemes.peek();
 		if(!l.relatedToken.name.equals("RIGHT_CURLY_B"))
 			return false;

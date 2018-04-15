@@ -27,6 +27,7 @@ public class Expression {
 		exprTerminal= new ThisExpressionTerminalPart();
 		if(exprTerminal.parse(lexemes))
 			return parseExpressionDash(lexemes);
+
 		exprTerminal= new NewExpressionTerminalPart();
 		if(exprTerminal.parse(lexemes))
 			return parseExpressionDash(lexemes);
@@ -40,6 +41,8 @@ public class Expression {
 		
 	}
 	private boolean parseExpressionDash(PriorityQueue<Lexeme> lexemes) {
+		if(lexemes.isEmpty())
+			return true;
 		exprDash = new OperatorExpressionDash();
 		if(exprDash.parse(lexemes))
 			return true;
@@ -49,6 +52,6 @@ public class Expression {
 		exprDash = new DotExpressionDash();
 		if(exprDash.parse(lexemes))
 			return true;
-		return false;
+		return true;
 	}
 }

@@ -9,14 +9,14 @@ public class ArrayBrackets {
 	
 	public void parse(PriorityQueue<Lexeme>lexemes) {
 		Lexeme l = lexemes.peek();
-		if(!l.relatedToken.name.equals("LEFT_SQUARE_B")){
+		if(l==null||!l.relatedToken.name.equals("LEFT_SQUARE_B")){
 			isEmpty=true;
 			return;
 		}
 		lexemes.poll();
 		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("RIGHT_SQUARE_B")){
+		if(l==null||!l.relatedToken.name.equals("RIGHT_SQUARE_B")){
 			isEmpty=true;
 			return;
 		}

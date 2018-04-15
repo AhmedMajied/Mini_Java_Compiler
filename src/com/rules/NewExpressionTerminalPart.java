@@ -7,6 +7,8 @@ import com.analyzer.Lexeme;
 public class NewExpressionTerminalPart extends ExpressionTerminalPart {
 	public FollowingNew followingNew;
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
+		if(lexemes.isEmpty())
+			return false;
 		Lexeme l = lexemes.peek();
 		if (l.relatedToken.name.equals("NEW")) {
 			lexemes.poll();

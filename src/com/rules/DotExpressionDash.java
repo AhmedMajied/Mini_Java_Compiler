@@ -30,6 +30,10 @@ public class DotExpressionDash extends ExpressionDash {
 					if (expr.parse(lexemes)) {
 						return true;
 					}
+					else {
+						expr = null;
+						return true;
+					}
 				}
 			}
 		}

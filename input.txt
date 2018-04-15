@@ -1,2 +1,5 @@
-String x;
-
+class andrew{
+	public static void main(String [] args){
+		System.out.println(x);
+	}
+}

@@ -27,6 +27,9 @@ public class OperatorExpressionDash extends ExpressionDash {
 						exprDash = new DotExpressionDash();
 						if(expr.parse(lexemes)) {
 							return true;
+						}else {
+							exprDash = null;
+							return true;
 						}
 					}
 				}
