@@ -8,6 +8,7 @@ public class FollowingNewDatatType extends FollowingNew {
 	public DataType dataType;
 	public Expression expr;
 	
+	@Override
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
 		dataType = new DataType();
 		if(!dataType.parse(lexemes))

@@ -5,11 +5,11 @@ import java.util.PriorityQueue;
 
 import com.analyzer.Lexeme;
 
-public class FollowingNewIdentifier extends FollowingNew{
+public class FollowingDotIdentifier extends FollowingDot{
 	public Identifier identifier;
+	public Expression expr;
 	public ArrayList<Expression> exprs;
 	
-	@Override
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
 		identifier = new Identifier();
 		if(!identifier.parse(lexemes))

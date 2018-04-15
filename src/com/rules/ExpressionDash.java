@@ -1,5 +1,9 @@
 package com.rules;
 
-public abstract class ExpressionDash {
+import java.util.PriorityQueue;
 
+import com.analyzer.Lexeme;
+
+public abstract class ExpressionDash {
+	public abstract boolean parse(PriorityQueue<Lexeme> lexemes);
 }

@@ -4,7 +4,7 @@ import java.util.PriorityQueue;
 
 import com.analyzer.Lexeme;
 
-public class VarDeclaration {
+public class MethodParameter {
 	public Type type;
 	public Identifier identifier;
 	
@@ -15,10 +15,7 @@ public class VarDeclaration {
 		identifier = new Identifier();
 		if(!identifier.parse(lexemes))
 			return false;
-		Lexeme l = lexemes.peek();
-		if(!l.relatedToken.name.equals("SEMICOLON"))
-			return false;
-		lexemes.poll();
+		
 		return true;
 	}
 }

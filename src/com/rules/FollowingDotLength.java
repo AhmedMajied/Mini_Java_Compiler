@@ -4,15 +4,14 @@ import java.util.PriorityQueue;
 
 import com.analyzer.Lexeme;
 
-public class NotExpressionTerminalPart extends ExpressionTerminalPart{
-	public Expression expr;
+public class FollowingDotLength extends FollowingDot {
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
 		Lexeme l = lexemes.peek();
-		if (l.relatedToken.name.equals("NOT")) {
+		if (l.relatedToken.name.equals("LENGTH")) {
 			lexemes.poll();
-			expr=new Expression();
-			return expr.parse(lexemes);
+			return true;
 		}
+
 		return false;
 	}
 }

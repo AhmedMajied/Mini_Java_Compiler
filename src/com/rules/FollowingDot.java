@@ -1,7 +1,9 @@
 package com.rules;
 
-public class FollowingDot {
-	public Identifier identifier;
-	public Expression expr;
-	public Expression exprs[];
+import java.util.PriorityQueue;
+
+import com.analyzer.Lexeme;
+
+public abstract class FollowingDot {
+	public abstract boolean parse(PriorityQueue<Lexeme>lexemes);
 }
