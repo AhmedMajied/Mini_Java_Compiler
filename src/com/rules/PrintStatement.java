@@ -10,12 +10,12 @@ public class PrintStatement extends Statement{
 	@Override
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
 		Lexeme l = lexemes.peek();
-		if(!l.relatedToken.name.equals("SYSTEM.OUT.PRINTLN"))
+		if(l==null||!l.relatedToken.name.equals("SYSTEM.OUT.PRINTLN"))
 			return false;
 		lexemes.poll();
 		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("LEFT_ROUND_B"))
+		if(l==null||!l.relatedToken.name.equals("LEFT_ROUND_B"))
 			return false;
 		lexemes.poll();
 		
@@ -24,12 +24,12 @@ public class PrintStatement extends Statement{
 			return false;
 		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("RIGHT_ROUND_B"))
+		if(l==null||!l.relatedToken.name.equals("RIGHT_ROUND_B"))
 			return false;
 		lexemes.poll();
 		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("SEMICOLON"))
+		if(l==null||!l.relatedToken.name.equals("SEMICOLON"))
 			return false;
 		lexemes.poll();
 		

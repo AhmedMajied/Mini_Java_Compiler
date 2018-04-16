@@ -14,24 +14,23 @@ public class ClassDeclaration {
 	
 	
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
-		if(lexemes.isEmpty())
-			return false;
+
 		Lexeme l = lexemes.peek();
-		if(!l.relatedToken.name.equals("CLASS"))
+		if(l==null||!l.relatedToken.name.equals("CLASS"))
 			return false;
 		lexemes.poll();
 		classIdentifier=new Identifier();
 		if(!classIdentifier.parse(lexemes))
 			return false;
 		l = lexemes.peek();
-		if(l.relatedToken.name.equals("EXTENDS")){
+		if(l!=null&&l.relatedToken.name.equals("EXTENDS")){
 			lexemes.poll();
 			extendsIdentifier=new Identifier();
 			if(!extendsIdentifier.parse(lexemes))
 				return false;
 		}
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("LEFT_CURLY_B"))
+		if(l==null||!l.relatedToken.name.equals("LEFT_CURLY_B"))
 			return false;
 		lexemes.poll();
 		
@@ -50,12 +49,12 @@ public class ClassDeclaration {
 		MethodDeclaration method = new MethodDeclaration();
 		while(method.parse(lexemes))
 			methods.add(method);
-		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("RIGHT_CURLY_B"))
+		if(l==null||!l.relatedToken.name.equals("RIGHT_CURLY_B"))
 			return false;
 		lexemes.poll();
-		
+		System.out.println(1);
+
 		
 		return true;
 	}

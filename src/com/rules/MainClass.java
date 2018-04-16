@@ -12,7 +12,7 @@ public class MainClass {
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
 
 		Lexeme l = lexemes.peek();
-		if(!l.relatedToken.name.equals("CLASS"))
+		if(l==null||!l.relatedToken.name.equals("CLASS"))
 			return false;
 		lexemes.poll();
 		
@@ -21,47 +21,47 @@ public class MainClass {
 			return false;
 		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("LEFT_CURLY_B"))
+		if(l==null||!l.relatedToken.name.equals("LEFT_CURLY_B"))
 			return false;
 		lexemes.poll();
 		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("PUBLIC"))
+		if(l==null||!l.relatedToken.name.equals("PUBLIC"))
 			return false;
 		lexemes.poll();
 		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("STATIC"))
+		if(l==null||!l.relatedToken.name.equals("STATIC"))
 			return false;
 		lexemes.poll();
 		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("VOID"))
+		if(l==null||!l.relatedToken.name.equals("VOID"))
 			return false;
 		lexemes.poll();
 		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("MAIN"))
+		if(l==null||!l.relatedToken.name.equals("MAIN"))
 			return false;
 		lexemes.poll();
 		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("LEFT_ROUND_B"))
+		if(l==null||!l.relatedToken.name.equals("LEFT_ROUND_B"))
 			return false;
 		lexemes.poll();
 		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("STRING"))
+		if(l==null||!l.relatedToken.name.equals("STRING"))
 			return false;
 		lexemes.poll();
 		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("LEFT_SQUARE_B"))
+		if(l==null||!l.relatedToken.name.equals("LEFT_SQUARE_B"))
 			return false;
 		lexemes.poll();
 		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("RIGHT_SQUARE_B"))
+		if(l==null||!l.relatedToken.name.equals("RIGHT_SQUARE_B"))
 			return false;
 		lexemes.poll();
 		
@@ -70,12 +70,12 @@ public class MainClass {
 			return false;
 		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("RIGHT_ROUND_B"))
+		if(l==null||!l.relatedToken.name.equals("RIGHT_ROUND_B"))
 			return false;
 		lexemes.poll();
 		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("LEFT_CURLY_B"))
+		if(l==null||!l.relatedToken.name.equals("LEFT_CURLY_B"))
 			return false;
 		lexemes.poll();
 		
@@ -88,7 +88,6 @@ public class MainClass {
 					stmt = new PrintStatement();
 					if(!stmt.parse(lexemes)){
 						stmt = new IdentifierStatement();
-						
 						if(!stmt.parse(lexemes)){
 							return false;
 						}
@@ -102,14 +101,13 @@ public class MainClass {
 		
 
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("RIGHT_CURLY_B"))
+		if(l==null||!l.relatedToken.name.equals("RIGHT_CURLY_B"))
 			return false;
 		lexemes.poll();
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("RIGHT_CURLY_B"))
+		if(l==null||!l.relatedToken.name.equals("RIGHT_CURLY_B"))
 			return false;
 		lexemes.poll();
-		
 		return true;
 		
 		

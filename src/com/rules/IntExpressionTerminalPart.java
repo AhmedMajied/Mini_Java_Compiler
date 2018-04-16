@@ -10,7 +10,7 @@ public class IntExpressionTerminalPart extends ExpressionTerminalPart {
 		if(lexemes.isEmpty())
 			return false;
 		Lexeme l = lexemes.peek();
-		if (l.relatedToken.name.equals("INTEGRAL_LITERAL")) {
+		if (l!=null&&l.relatedToken.name.equals("INTEGRAL_LITERAL")) {
 			lexemes.poll();
 			number=Integer.parseInt(l.matchedWord);
 			return true;

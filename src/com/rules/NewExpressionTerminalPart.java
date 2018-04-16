@@ -10,7 +10,7 @@ public class NewExpressionTerminalPart extends ExpressionTerminalPart {
 		if(lexemes.isEmpty())
 			return false;
 		Lexeme l = lexemes.peek();
-		if (l.relatedToken.name.equals("NEW")) {
+		if (l!=null&&l.relatedToken.name.equals("NEW")) {
 			lexemes.poll();
 			followingNew=new FollowingNewDatatType();
 			if(followingNew.parse(lexemes))

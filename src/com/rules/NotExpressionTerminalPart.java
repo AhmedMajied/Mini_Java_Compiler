@@ -10,7 +10,7 @@ public class NotExpressionTerminalPart extends ExpressionTerminalPart{
 		if(lexemes.isEmpty())
 			return false;
 		Lexeme l = lexemes.peek();
-		if (l.relatedToken.name.equals("NOT")) {
+		if (l!=null&&l.relatedToken.name.equals("NOT")) {
 			lexemes.poll();
 			expr=new Expression();
 			return expr.parse(lexemes);

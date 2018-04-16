@@ -13,12 +13,12 @@ public class IfStatement extends Statement{
 	@Override
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
 		Lexeme l = lexemes.peek();
-		if(!l.relatedToken.name.equals("IF"))
+		if(l==null||!l.relatedToken.name.equals("IF"))
 			return false;
 		lexemes.poll();
 		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("LEFT_ROUND_B"))
+		if(l==null||!l.relatedToken.name.equals("LEFT_ROUND_B"))
 			return false;
 		lexemes.poll();
 		
@@ -27,7 +27,7 @@ public class IfStatement extends Statement{
 			return false;
 		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("RIGHT_ROUND_B"))
+		if(l==null||!l.relatedToken.name.equals("RIGHT_ROUND_B"))
 			return false;
 		lexemes.poll();
 		

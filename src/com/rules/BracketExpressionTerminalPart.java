@@ -12,12 +12,12 @@ public class BracketExpressionTerminalPart extends ExpressionTerminalPart{
 		if(lexemes.isEmpty())
 			return false;
 		Lexeme l = lexemes.peek();
-		if (l.relatedToken.name.equals("LEFT_ROUND_B")) {
+		if (l!=null&&l.relatedToken.name.equals("LEFT_ROUND_B")) {
 			lexemes.poll();
 			expr=new Expression();
 			if(expr.parse(lexemes)) {
 				l = lexemes.peek();
-				if (l.relatedToken.name.equals("RIGHT_ROUND_B")) {
+				if (l!=null&&l.relatedToken.name.equals("RIGHT_ROUND_B")) {
 					lexemes.poll();
 					return true;
 				}

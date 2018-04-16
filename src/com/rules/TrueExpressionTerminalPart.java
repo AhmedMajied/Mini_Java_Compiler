@@ -9,7 +9,7 @@ public class TrueExpressionTerminalPart extends ExpressionTerminalPart{
 		if(lexemes.isEmpty())
 			return false;
 		Lexeme l = lexemes.peek();
-		if (l.relatedToken.name.equals("TRUE")) {
+		if (l!=null&&l.relatedToken.name.equals("TRUE")) {
 			lexemes.poll();
 			return true;
 		}

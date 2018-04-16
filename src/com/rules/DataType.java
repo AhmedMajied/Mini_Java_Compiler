@@ -12,12 +12,12 @@ public class DataType {
 		if(l==null)
 			return false;
 		
-		if(l.relatedToken.name.equals("INT")
+		if(l!=null&&(l.relatedToken.name.equals("INT")
 				||l.relatedToken.name.equals("FLOAT")
 				||l.relatedToken.name.equals("STRING")
 				||l.relatedToken.name.equals("CHAR")
 				||l.relatedToken.name.equals("BOOLEAN")
-				) {
+				)) {
 			lexemes.poll();
 			dataType=l.matchedWord;
 			return true;

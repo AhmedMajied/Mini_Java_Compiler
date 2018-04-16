@@ -20,16 +20,17 @@ public class FollowingDotIdentifier extends FollowingDot{
 		Lexeme l = lexemes.peek();
 		
 		
-		if(l.relatedToken.name.equals("LEFT_ROUND_B")) {
+		if(l!=null&&l.relatedToken.name.equals("LEFT_ROUND_B")) {
 			lexemes.poll();
 			Expression expr = new Expression();
 			while(expr.parse(lexemes)) {
 				exprs.add(expr);
-				if(lexemes.peek().relatedToken.name.equals("COMMA"))
+				l=lexemes.peek();
+				if(l!=null&&l.relatedToken.name.equals("COMMA"))
 					lexemes.poll();
 			}
 			l = lexemes.peek();
-			if(l.relatedToken.name.equals("RIGHT_ROUND_B")) {
+			if(l!=null&&l.relatedToken.name.equals("RIGHT_ROUND_B")) {
 				lexemes.poll();
 				return true;
 			}

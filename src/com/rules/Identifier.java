@@ -12,7 +12,7 @@ public class Identifier {
 		if(lexemes.isEmpty())
 			return false;
 		Lexeme l = lexemes.peek();
-		if(l.relatedToken.name.equals("ID")) {
+		if(l!=null&&l.relatedToken.name.equals("ID")) {
 			lexemes.poll();
 			id=l.matchedWord;
 			return true;

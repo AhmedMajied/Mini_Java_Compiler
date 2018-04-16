@@ -10,48 +10,62 @@ public class Expression {
 	
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
 		exprTerminal= new IntExpressionTerminalPart();
-		if(exprTerminal.parse(lexemes))
-			return parseExpressionDash(lexemes);
+		if(exprTerminal.parse(lexemes)) {
+			parseExpressionDash(lexemes);
+			return true;
+		}
 		exprTerminal= new FloatExpressionTerminalPart();
-		if(exprTerminal.parse(lexemes))
-			return parseExpressionDash(lexemes);
+		if(exprTerminal.parse(lexemes)) {
+			parseExpressionDash(lexemes);
+			return true;
+		}
 		exprTerminal= new TrueExpressionTerminalPart();
-		if(exprTerminal.parse(lexemes))
-			return parseExpressionDash(lexemes);
+		if(exprTerminal.parse(lexemes)){
+			parseExpressionDash(lexemes);
+			return true;
+		}
 		exprTerminal= new FalseExpressionTerminalPart();
-		if(exprTerminal.parse(lexemes))
-			return parseExpressionDash(lexemes);
+		if(exprTerminal.parse(lexemes)){
+			parseExpressionDash(lexemes);
+			return true;
+		}
 		exprTerminal= new IdentifierExpressionTerminalPart();
-		if(exprTerminal.parse(lexemes))
-			return parseExpressionDash(lexemes);
+		if(exprTerminal.parse(lexemes)){
+			parseExpressionDash(lexemes);
+			return true;
+		}
 		exprTerminal= new ThisExpressionTerminalPart();
-		if(exprTerminal.parse(lexemes))
-			return parseExpressionDash(lexemes);
+		if(exprTerminal.parse(lexemes)){
+			parseExpressionDash(lexemes);
+			return true;
+		}
 
 		exprTerminal= new NewExpressionTerminalPart();
-		if(exprTerminal.parse(lexemes))
-			return parseExpressionDash(lexemes);
+		if(exprTerminal.parse(lexemes)){
+			parseExpressionDash(lexemes);
+			return true;
+		}
 		exprTerminal= new NotExpressionTerminalPart();
-		if(exprTerminal.parse(lexemes))
-			return parseExpressionDash(lexemes);
+		if(exprTerminal.parse(lexemes)){
+			parseExpressionDash(lexemes);
+			return true;
+		}
 		exprTerminal= new BracketExpressionTerminalPart();
-		if(exprTerminal.parse(lexemes))
-			return parseExpressionDash(lexemes);
+		if(exprTerminal.parse(lexemes)){
+			parseExpressionDash(lexemes);
+			return true;
+		}
 		return false;
 		
 	}
-	private boolean parseExpressionDash(PriorityQueue<Lexeme> lexemes) {
-		if(lexemes.isEmpty())
-			return true;
+	private void parseExpressionDash(PriorityQueue<Lexeme> lexemes) {
 		exprDash = new OperatorExpressionDash();
 		if(exprDash.parse(lexemes))
-			return true;
+			return;
 		exprDash = new ExpressionExpressionDash();
 		if(exprDash.parse(lexemes))
-			return true;
+			return;
 		exprDash = new DotExpressionDash();
-		if(exprDash.parse(lexemes))
-			return true;
-		return true;
+		exprDash.parse(lexemes);
 	}
 }

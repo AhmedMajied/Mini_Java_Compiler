@@ -12,7 +12,7 @@ public class ExpressionExpressionDash extends ExpressionDash {
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
 		Lexeme l = lexemes.peek();
 
-		if (!l.relatedToken.name.equals("LEFT_SQUARE_B"))
+		if (l==null||!l.relatedToken.name.equals("LEFT_SQUARE_B"))
 			return false;
 		lexemes.poll();
 		expr = new Expression();
@@ -29,7 +29,7 @@ public class ExpressionExpressionDash extends ExpressionDash {
 			}
 		}
 		l = lexemes.peek();
-		if (!l.relatedToken.name.equals("RIGHT_SQUARE_B")) {
+		if (l==null||!l.relatedToken.name.equals("RIGHT_SQUARE_B")) {
 			return false;
 		}
 		lexemes.poll();

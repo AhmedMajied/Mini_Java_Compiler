@@ -16,7 +16,7 @@ public class VarDeclaration {
 		if(!identifier.parse(lexemes))
 			return false;
 		Lexeme l = lexemes.peek();
-		if(!l.relatedToken.name.equals("SEMICOLON"))
+		if(l==null||!l.relatedToken.name.equals("SEMICOLON"))
 			return false;
 		lexemes.poll();
 		return true;

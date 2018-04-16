@@ -22,7 +22,7 @@ public class ConstructorDeclaration {
 			return false;
 		
 		Lexeme l = lexemes.peek();
-		if(!l.relatedToken.name.equals("LEFT_ROUND_B"))
+		if(l==null||!l.relatedToken.name.equals("LEFT_ROUND_B"))
 			return false;
 		
 		params=new ArrayList<>();
@@ -35,15 +35,15 @@ public class ConstructorDeclaration {
 			params.add(param);
 			l = lexemes.peek();
 		}
-		while(l.relatedToken.name.equals("COMMA"));
+		while(l!=null&&l.relatedToken.name.equals("COMMA"));
 		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("RIGHT_ROUND_B"))
+		if(l==null||!l.relatedToken.name.equals("RIGHT_ROUND_B"))
 			return false;
 		lexemes.poll();
 
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("LEFT_CURLY_B"))
+		if(l==null||!l.relatedToken.name.equals("LEFT_CURLY_B"))
 			return false;
 		lexemes.poll();
 
@@ -85,13 +85,13 @@ public class ConstructorDeclaration {
 		}
 		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("RETURN"))
+		if(l==null||!l.relatedToken.name.equals("RETURN"))
 			return false;
 		lexemes.poll();
 		
 		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("RIGHT_CURLY_B"))
+		if(l==null||!l.relatedToken.name.equals("RIGHT_CURLY_B"))
 			return false;
 		lexemes.poll();
 		

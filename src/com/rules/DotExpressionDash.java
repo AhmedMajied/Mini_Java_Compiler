@@ -10,7 +10,7 @@ public class DotExpressionDash extends ExpressionDash {
 	@Override
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
 		Lexeme l = lexemes.peek();
-		if (l.relatedToken.name.equals("DOT")) {
+		if (l!=null&&l.relatedToken.name.equals("DOT")) {
 			followingDot = new FollowingDotLength();
 			if (!followingDot.parse(lexemes)) {
 				followingDot = new FollowingDotIdentifier();

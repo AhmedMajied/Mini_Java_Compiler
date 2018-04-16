@@ -14,16 +14,15 @@ public class FollowingNewDatatType extends FollowingNew {
 		if(!dataType.parse(lexemes))
 			return false;
 		Lexeme l = lexemes.peek();
-		if(l==null)
-			return false;
 		
-		if(l.relatedToken.name.equals("LEFT_SQUARE_B")) {
+		
+		if(l!=null&&l.relatedToken.name.equals("LEFT_SQUARE_B")) {
 			lexemes.poll();
 			expr = new Expression();
 			if(!expr.parse(lexemes))
 				return false;
 			l = lexemes.peek();
-			if(l.relatedToken.name.equals("RIGHT_SQUARE_B")) {
+			if(l!=null&&l.relatedToken.name.equals("RIGHT_SQUARE_B")) {
 				lexemes.poll();
 				return true;
 			}

@@ -10,7 +10,7 @@ public class Else {
 	
 	public void parse(PriorityQueue<Lexeme> lexemes) {
 		Lexeme l = lexemes.peek();
-		if(!l.relatedToken.name.equals("ELSE")){
+		if(l==null||!l.relatedToken.name.equals("ELSE")){
 			isEmpty = true;
 		}
 		else {

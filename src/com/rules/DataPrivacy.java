@@ -9,9 +9,9 @@ public class DataPrivacy {
 
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
 		Lexeme l = lexemes.peek();
-		if(!l.relatedToken.name.equals("PRIVATE") 
+		if(l==null||(!l.relatedToken.name.equals("PRIVATE") 
 				&& !l.relatedToken.name.equals("PUBLIC")
-				&& !l.relatedToken.name.equals("PROTECTED")) 
+				&& !l.relatedToken.name.equals("PROTECTED")))
 		{
 			return false;
 		}

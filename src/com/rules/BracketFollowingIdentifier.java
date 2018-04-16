@@ -10,7 +10,7 @@ public class BracketFollowingIdentifier extends FollowingIdentifier {
 	@Override
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
 		Lexeme l = lexemes.peek();
-		if(!l.relatedToken.name.equals("LEFT_SQUARE_B"))
+		if(l==null||!l.relatedToken.name.equals("LEFT_SQUARE_B"))
 			return false;
 		lexemes.poll();
 		
@@ -19,12 +19,12 @@ public class BracketFollowingIdentifier extends FollowingIdentifier {
 			return false;
 		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("RIGHT_SQUARE_B"))
+		if(l==null||!l.relatedToken.name.equals("RIGHT_SQUARE_B"))
 			return false;
 		lexemes.poll();
 
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("ASSIGNMENT"))
+		if(l==null||!l.relatedToken.name.equals("ASSIGNMENT"))
 			return false;
 		lexemes.poll();
 		
@@ -33,7 +33,7 @@ public class BracketFollowingIdentifier extends FollowingIdentifier {
 			return false;
 		
 		l = lexemes.peek();
-		if(!l.relatedToken.name.equals("SEMICOLON"))
+		if(l==null||!l.relatedToken.name.equals("SEMICOLON"))
 			return false;
 		lexemes.poll();
 		

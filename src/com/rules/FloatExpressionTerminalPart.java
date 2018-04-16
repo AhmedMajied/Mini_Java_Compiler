@@ -7,10 +7,9 @@ import com.analyzer.Lexeme;
 public class FloatExpressionTerminalPart extends ExpressionTerminalPart {
 	public float number;
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
-		if(lexemes.isEmpty())
-			return false;
+
 		Lexeme l = lexemes.peek();
-		if (l.relatedToken.name.equals("FLOAT_LITERAL")) {
+		if (l!=null&&l.relatedToken.name.equals("FLOAT_LITERAL")) {
 			lexemes.poll();
 			number=Float.parseFloat(l.matchedWord);
 			return true;
