@@ -4,16 +4,18 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 import com.analyzer.Lexeme;
+import com.util.Utils;
 
 public class ScopeStatement extends Statement {
 	public ArrayList<Statement> stmts;
 
 	@Override
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
+		ArrayList<Lexeme> poped = new ArrayList<>();
 		Lexeme l = lexemes.peek();
 		if(l==null||!l.relatedToken.name.equals("LEFT_CURLY_B"))
 			return false;
-		lexemes.poll();
+		poped.add(lexemes.poll());
 		stmts = new ArrayList<>();
 		boolean isParsed = true;
 		
@@ -48,7 +50,10 @@ public class ScopeStatement extends Statement {
 		
 		l = lexemes.peek();
 		if(l==null||!l.relatedToken.name.equals("RIGHT_CURLY_B"))
+		{
+			Utils.RollBack(lexemes, poped);
 			return false;
+		}
 		lexemes.poll();
 		return true;
 	}

@@ -1,7 +1,6 @@
 package com.rules;
 
 import java.util.PriorityQueue;
-
 import com.analyzer.Lexeme;
 
 public class VarDeclaration {

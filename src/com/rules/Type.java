@@ -9,11 +9,14 @@ public class Type {
 	public ArrayBrackets arrayBrackets;
 	
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
+
 		type=new DataType();
 		arrayBrackets=new ArrayBrackets();
 		if(!type.parse(lexemes))
 			return false;
+
 		arrayBrackets.parse(lexemes);
+
 		return true;
 	}
 }

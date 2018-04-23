@@ -3,7 +3,10 @@ package com.rules;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
+
 import com.analyzer.Lexeme;
+import com.util.Utils;
 
 public class ConstructorDeclaration {
 	public Identifier identifier;
@@ -20,11 +23,10 @@ public class ConstructorDeclaration {
 		identifier = new Identifier();
 		if(!identifier.parse(lexemes))
 			return false;
-		
 		Lexeme l = lexemes.peek();
 		if(l==null||!l.relatedToken.name.equals("LEFT_ROUND_B"))
 			return false;
-		
+
 		params=new ArrayList<>();
 		
 		do {
@@ -36,7 +38,7 @@ public class ConstructorDeclaration {
 			l = lexemes.peek();
 		}
 		while(l!=null&&l.relatedToken.name.equals("COMMA"));
-		
+
 		l = lexemes.peek();
 		if(l==null||!l.relatedToken.name.equals("RIGHT_ROUND_B"))
 			return false;
@@ -84,12 +86,7 @@ public class ConstructorDeclaration {
 			isParsed=false;
 		}
 		
-		l = lexemes.peek();
-		if(l==null||!l.relatedToken.name.equals("RETURN"))
-			return false;
-		lexemes.poll();
-		
-		
+
 		l = lexemes.peek();
 		if(l==null||!l.relatedToken.name.equals("RIGHT_CURLY_B"))
 			return false;

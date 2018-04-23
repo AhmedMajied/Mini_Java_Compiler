@@ -1,8 +1,10 @@
 package com.rules;
 
+import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 import com.analyzer.Lexeme;
+import com.util.Utils;
 
 public class FollowingNewDatatType extends FollowingNew {
 	public DataType dataType;
@@ -10,6 +12,7 @@ public class FollowingNewDatatType extends FollowingNew {
 	
 	@Override
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
+		ArrayList<Lexeme> poped = new ArrayList<>();
 		dataType = new DataType();
 		if(!dataType.parse(lexemes))
 			return false;
@@ -17,7 +20,7 @@ public class FollowingNewDatatType extends FollowingNew {
 		
 		
 		if(l!=null&&l.relatedToken.name.equals("LEFT_SQUARE_B")) {
-			lexemes.poll();
+			poped.add(lexemes.poll());
 			expr = new Expression();
 			if(!expr.parse(lexemes))
 				return false;
@@ -27,7 +30,7 @@ public class FollowingNewDatatType extends FollowingNew {
 				return true;
 			}
 		}
-		
+		Utils.RollBack(lexemes, poped);
 		return false;
 	}
 }

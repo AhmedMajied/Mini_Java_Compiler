@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 import com.analyzer.Lexeme;
+import com.util.Utils;
 
 public class MethodDeclaration {
 	public DataPrivacy privacy;
@@ -16,26 +17,30 @@ public class MethodDeclaration {
 	
 	
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
+		ArrayList<Lexeme> poped = new ArrayList<>();
 		privacy= new DataPrivacy();
 		if(!privacy.parse(lexemes))
 			return false;
-		
+
 		type= new Type();
 		if(!type.parse(lexemes))
 			return false;
-		
+
 		identifier = new Identifier();
+		
 		if(!identifier.parse(lexemes))
 			return false;
 		
 		Lexeme l = lexemes.peek();
+
 		if(l==null||!l.relatedToken.name.equals("LEFT_ROUND_B"))
 			return false;
-		
+
 		params=new ArrayList<>();
 		
 		do {
-			lexemes.poll();
+
+			poped.add(lexemes.poll());
 			MethodParameter param = new MethodParameter();
 			if(!param.parse(lexemes))
 				break;
@@ -45,14 +50,23 @@ public class MethodDeclaration {
 		while(l!=null&&l.relatedToken.name.equals("COMMA"));
 		
 		l = lexemes.peek();
+
 		if(l==null||!l.relatedToken.name.equals("RIGHT_ROUND_B"))
+		{
+			Utils.RollBack(lexemes, poped);
 			return false;
-		lexemes.poll();
+		}
+
+		poped.add(lexemes.poll());
 
 		l = lexemes.peek();
 		if(l==null||!l.relatedToken.name.equals("LEFT_CURLY_B"))
+		{
+			Utils.RollBack(lexemes, poped);
 			return false;
-		lexemes.poll();
+		}
+		
+		poped.add(lexemes.poll());
 
 		vars = new ArrayList<>();
 		VarDeclaration var = new VarDeclaration();
@@ -61,7 +75,7 @@ public class MethodDeclaration {
 		
 		
 		boolean isParsed = true;
-		
+		stmts=new ArrayList<>();
 		while(isParsed) {
 			Statement st = new ScopeStatement();
 			if(st.parse(lexemes)) {
@@ -90,19 +104,33 @@ public class MethodDeclaration {
 			}
 			isParsed=false;
 		}
-		
+
 		l = lexemes.peek();
 		if(l==null||!l.relatedToken.name.equals("RETURN"))
+		{
+			Utils.RollBack(lexemes, poped);
 			return false;
-		lexemes.poll();
-		
+		}
+		poped.add(lexemes.poll());
+
 		retExpr = new Expression();
 		if(!retExpr.parse(lexemes))
 			return false;
 		
 		l = lexemes.peek();
-		if(l==null||!l.relatedToken.name.equals("RIGHT_CURLY_B"))
+		if(l==null||!l.relatedToken.name.equals("SEMICOLON"))
+		{
+			Utils.RollBack(lexemes, poped);
 			return false;
+		}
+		lexemes.poll();
+		
+		l = lexemes.peek();
+		if(l==null||!l.relatedToken.name.equals("RIGHT_CURLY_B"))
+		{
+			Utils.RollBack(lexemes, poped);
+			return false;
+		}
 		lexemes.poll();
 		
 		return true;

@@ -16,6 +16,7 @@ public class DataPrivacy {
 			return false;
 		}
 		privacy=l.matchedWord;
+		lexemes.poll();
 		return true;
 	}
 }

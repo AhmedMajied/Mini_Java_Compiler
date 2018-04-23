@@ -11,7 +11,7 @@ public class DataType {
 		Lexeme l = lexemes.peek();
 		if(l==null)
 			return false;
-		
+
 		if(l!=null&&(l.relatedToken.name.equals("INT")
 				||l.relatedToken.name.equals("FLOAT")
 				||l.relatedToken.name.equals("STRING")
@@ -22,6 +22,7 @@ public class DataType {
 			dataType=l.matchedWord;
 			return true;
 		}
+
 		
 		return false;
 	}

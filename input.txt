@@ -3,7 +3,14 @@ class x{
 		{}
 	}
 }
-class y extends x{
-int x;
-y(){}
-private 
+class y{
+	int x;
+	y(){} 
+	public int z(int x,float x){
+		while(true){
+			System.out.println(y);
+		}
+		if(false){}
+		return true;
+	}
+}
