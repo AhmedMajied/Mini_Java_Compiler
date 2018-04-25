@@ -1,16 +1,12 @@
 class x{
 	public static void main(String [] args){
-		{}
+		{
+			c = 10;
+			System.out.println(c);
+		}
 	}
 }
+
 class y{
-	int x;
-	y(){} 
-	public int z(int x,float x){
-		while(true){
-			System.out.println(y);
-		}
-		if(false){}
-		return true;
-	}
+public int x(){return false;}
 }

@@ -1,4 +1,5 @@
 package com.analyzer;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -46,13 +47,15 @@ public class MAIN {
 		String input = new String(Files.readAllBytes(Paths.get("input.txt")), StandardCharsets.UTF_8);
 		StringBuffer text = new StringBuffer(input);
 		PriorityQueue<Lexeme> Lexemes = LexicalAnalyser.extractTokens(text);
-//		while(!Lexemes.isEmpty())
-//			System.out.println(Lexemes.poll().relatedToken.name);
 		Goal g = new Goal();
-		g.parse(Lexemes);
-		g.print();
-//		while(!Lexemes.isEmpty())
-//			System.out.println(Lexemes.poll().relatedToken.name);
 		
+		System.setOut(new PrintStream(new File("output.txt"))); // Print to output.txt file
+		
+		if (g.parse(Lexemes)) {
+			g.print();
+		}
+		else {
+			System.out.print("Syntax Error !");
+		}
 	}
 }

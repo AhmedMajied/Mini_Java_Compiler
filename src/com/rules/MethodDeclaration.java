@@ -160,8 +160,10 @@ public class MethodDeclaration {
 			System.out.print("\r\n");
 		}
 		
+		System.out.print("return ");
+		retExpr.print();
 		
-		System.out.print("}\r\n");
+		System.out.print(";\r\n}\r\n");
 		
 	}
 		

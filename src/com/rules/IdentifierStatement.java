@@ -28,6 +28,7 @@ public class IdentifierStatement extends Statement{
 	@Override
 	public void print() {
 		identifier.print();
+
 		followingIdentitifer.print();
 	}
 	

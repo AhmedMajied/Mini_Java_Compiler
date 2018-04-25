@@ -21,8 +21,9 @@ public class Identifier {
 	}
 
 	public void print() {
+
 		System.out.print(id+ " ");
-		
+
 	}
 	
 }
