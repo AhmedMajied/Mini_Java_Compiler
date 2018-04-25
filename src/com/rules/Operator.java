@@ -43,4 +43,9 @@ public class Operator {
 		}
 		return false;
 	}
+	
+	public void print() {
+		System.out.print(operator);
+	}
+
 }

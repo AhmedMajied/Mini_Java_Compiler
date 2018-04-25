@@ -35,4 +35,17 @@ public class FollowingNewIdentifier extends FollowingNew{
 		Utils.RollBack(lexemes, poped);
 		return false;
 	}
+
+	@Override
+	public void print() {
+		identifier.print();
+		System.out.print("(");
+		for(int i=0;i<exprs.size();++i) {
+			if(i>0)
+				System.out.print(", ");
+			exprs.get(i).print();
+		}
+		System.out.print(")");
+		
+	}
 }

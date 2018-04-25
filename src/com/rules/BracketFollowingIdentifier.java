@@ -49,4 +49,21 @@ public class BracketFollowingIdentifier extends FollowingIdentifier {
 		lexemes.poll();
 		return true;
 	}
+	
+	
+	public void print() {
+		System.out.print("[");
+		b_expr.print();
+		System.out.print("] = ");
+		e_expr.print();
+		System.out.print(";");
+	}
 }
+
+
+
+
+
+
+
+

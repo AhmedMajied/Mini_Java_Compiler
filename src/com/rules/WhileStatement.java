@@ -61,4 +61,13 @@ public class WhileStatement extends Statement{
 		Utils.RollBack(lexemes, poped);
 		return false;
 	}
+
+	@Override
+	public void print() {
+		System.out.print("while(");
+		expr.print();
+		System.out.print(") ");
+		stmt.print();
+		
+	}
 }

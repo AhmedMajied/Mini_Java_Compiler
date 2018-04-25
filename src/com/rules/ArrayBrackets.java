@@ -24,4 +24,10 @@ public class ArrayBrackets {
 		
 		isEmpty=false;
 	}
+	
+	public void print() {
+		if(!isEmpty)
+			System.out.print("[]");
+		
+	}
 }

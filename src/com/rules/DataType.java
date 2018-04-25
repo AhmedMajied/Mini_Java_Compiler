@@ -21,9 +21,11 @@ public class DataType {
 			lexemes.poll();
 			dataType=l.matchedWord;
 			return true;
-		}
-
-		
+		}		
 		return false;
+	}
+	
+	public void print() {
+		System.out.print(dataType+" ");
 	}
 }

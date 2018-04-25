@@ -21,4 +21,11 @@ public class Goal {
 		}
 		return lexemes.isEmpty();
 	}
+	
+	
+	public void print() {
+		main.print();
+		for(ClassDeclaration c : classDeclarations)
+			c.print();
+	}
 }

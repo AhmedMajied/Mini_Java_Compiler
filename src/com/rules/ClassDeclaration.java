@@ -30,6 +30,7 @@ public class ClassDeclaration {
 			extendsIdentifier=new Identifier();
 			if(!extendsIdentifier.parse(lexemes)){
 				Utils.RollBack(lexemes, poped);
+				extendsIdentifier = null;
 				return false;
 			}
 		}
@@ -44,13 +45,17 @@ public class ClassDeclaration {
 		
 		VarDeclaration var = new VarDeclaration();
 		props = new ArrayList<>();
-		while(var.parse(lexemes))
+		while(var.parse(lexemes)) {
 			props.add(var);
+			var = new VarDeclaration();
+		}
 		
 		contructors=new ArrayList<>();
 		ConstructorDeclaration constructor = new ConstructorDeclaration();
-		while(constructor.parse(lexemes))
+		while(constructor.parse(lexemes)) {
 			contructors.add(constructor);
+			constructor = new ConstructorDeclaration();
+		}
 		
 
 		methods = new ArrayList<>();
@@ -70,5 +75,29 @@ public class ClassDeclaration {
 		return true;
 	}
 	
+	
+	public void print() {
+		
+		System.out.print("class ");
+		classIdentifier.print();
+		if(extendsIdentifier != null) {
+			System.out.print(" extends ");
+			extendsIdentifier.print();
+		}
+		System.out.print("{\r\n");
+		for(VarDeclaration v : props) {
+			v.print();
+			System.out.println("\r\n");
+		}
+		for(ConstructorDeclaration c : contructors) {
+			c.print();
+			System.out.println("\r\n");
+		}
+		for(MethodDeclaration m : methods) {
+			m.print();
+			System.out.println("\r\n");
+		}
+		System.out.print("\r\n}\r\n");			
+	}
 	
 }

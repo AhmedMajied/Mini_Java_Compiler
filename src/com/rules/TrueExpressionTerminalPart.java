@@ -16,4 +16,10 @@ public class TrueExpressionTerminalPart extends ExpressionTerminalPart{
 
 		return false;
 	}
+
+	@Override
+	public void print() {
+		System.out.print("true");
+		
+	}
 }

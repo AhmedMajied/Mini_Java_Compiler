@@ -158,4 +158,15 @@ public class MainClass {
 		
 	}
 
+	public void print() {
+		System.out.print("class ");
+		classIdentifier.print();
+		System.out.print("{\r\npublic static void main(String []");
+		argsIdentifier.print();
+		System.out.print("){\r\n");
+		stmt.print();
+		System.out.print("\r\n}\r\n}\r\n");
+		
+	}
+
 }

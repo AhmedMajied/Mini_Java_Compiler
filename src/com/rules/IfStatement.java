@@ -69,6 +69,16 @@ public class IfStatement extends Statement{
 		Utils.RollBack(lexemes, poped);
 		return false;
 	}
+
+	@Override
+	public void print() {
+		System.out.print("if (");
+		expr.print();
+		System.out.print(")\r\n");
+		stmt.print();
+		System.out.print("\r\n");
+		_else.print();
+	}
 }
 
 

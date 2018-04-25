@@ -17,4 +17,14 @@ public class NotExpressionTerminalPart extends ExpressionTerminalPart{
 		}
 		return false;
 	}
+	
+	
+	@Override
+	public void print() {
+		System.out.print("!");
+		expr.print();
+		
+	}
+	
+	
 }

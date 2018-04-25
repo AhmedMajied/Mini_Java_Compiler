@@ -37,4 +37,14 @@ public class OperatorExpressionDash extends ExpressionDash {
 		}
 		return false;
 	}
+
+	@Override
+	public void print() {
+		operator.print();
+		System.out.print(" ");
+		expr.print();
+		System.out.print(" ");
+		exprDash.print();
+		System.out.print(" ");
+	}
 }

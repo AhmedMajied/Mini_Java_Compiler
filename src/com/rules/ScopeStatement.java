@@ -57,4 +57,16 @@ public class ScopeStatement extends Statement {
 		lexemes.poll();
 		return true;
 	}
+
+	@Override
+	public void print() {
+		System.out.print("{\r\n");
+		for(Statement st : stmts) {
+			st.print();
+			System.out.print("\r\n");
+		}
+		System.out.print("}\r\n");
+
+	}
+	
 }

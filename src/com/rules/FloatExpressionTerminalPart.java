@@ -17,4 +17,9 @@ public class FloatExpressionTerminalPart extends ExpressionTerminalPart {
 
 		return false;
 	}
+	@Override
+	public void print() {
+		System.out.print(number);
+		
+	}
 }

@@ -29,4 +29,10 @@ public class BracketExpressionTerminalPart extends ExpressionTerminalPart{
 		Utils.RollBack(lexemes, poped);
 		return false;
 	}
+	
+	public void print() {
+		System.out.print("(");
+		expr.print();
+		System.out.print(")");
+	}
 }

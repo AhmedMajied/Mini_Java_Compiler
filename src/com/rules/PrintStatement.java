@@ -47,4 +47,12 @@ public class PrintStatement extends Statement{
 		
 		return true;
 	}
+
+	@Override
+	public void print() {
+		System.out.print("System.out.println(");
+		expr.print();
+		System.out.print(");");
+		
+	}
 }

@@ -23,4 +23,13 @@ public class IdentifierStatement extends Statement{
 		
 		return false;
 	}
+
+
+	@Override
+	public void print() {
+		identifier.print();
+		followingIdentitifer.print();
+	}
+	
+	
 }

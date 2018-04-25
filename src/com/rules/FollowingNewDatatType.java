@@ -33,4 +33,16 @@ public class FollowingNewDatatType extends FollowingNew {
 		Utils.RollBack(lexemes, poped);
 		return false;
 	}
+
+	@Override
+	public void print() {
+		dataType.print();
+		System.out.print("[");
+		expr.print();
+		System.out.print("]");
+		
+	}
+	
+	
+	
 }

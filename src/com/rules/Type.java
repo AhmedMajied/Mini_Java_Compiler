@@ -12,11 +12,18 @@ public class Type {
 
 		type=new DataType();
 		arrayBrackets=new ArrayBrackets();
-		if(!type.parse(lexemes))
+		if(!type.parse(lexemes)) 
 			return false;
 
 		arrayBrackets.parse(lexemes);
 
 		return true;
+	}
+
+	public void print() {
+		type.print();
+		arrayBrackets.print();
+		System.out.print(" ");
+		
 	}
 }

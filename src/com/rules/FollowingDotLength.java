@@ -14,4 +14,10 @@ public class FollowingDotLength extends FollowingDot {
 
 		return false;
 	}
+
+	@Override
+	public void print() {
+		System.out.print("length");
+		
+	}
 }

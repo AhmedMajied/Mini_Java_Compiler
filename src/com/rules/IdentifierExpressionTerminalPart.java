@@ -10,4 +10,11 @@ public class IdentifierExpressionTerminalPart extends ExpressionTerminalPart{
 		identifier=new Identifier();
 		return identifier.parse(lexemes);
 	}
+	@Override
+	public void print() {
+		identifier.print();
+		
+	}
+	
+	
 }

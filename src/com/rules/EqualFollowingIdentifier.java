@@ -28,4 +28,10 @@ public class EqualFollowingIdentifier extends FollowingIdentifier {
 		lexemes.poll();
 		return true;
 	}
+	
+	public void print() {
+		System.out.print("=");
+		expr.print();
+		System.out.print(";\r\n");
+	}
 }

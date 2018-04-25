@@ -18,4 +18,10 @@ public class MethodParameter {
 		
 		return true;
 	}
+
+	public void print() {
+		type.print();
+		identifier.print();
+		
+	}
 }

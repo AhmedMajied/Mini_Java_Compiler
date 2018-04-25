@@ -49,7 +49,8 @@ public class MAIN {
 //		while(!Lexemes.isEmpty())
 //			System.out.println(Lexemes.poll().relatedToken.name);
 		Goal g = new Goal();
-		System.out.println(g.parse(Lexemes));
+		g.parse(Lexemes);
+		g.print();
 //		while(!Lexemes.isEmpty())
 //			System.out.println(Lexemes.poll().relatedToken.name);
 		

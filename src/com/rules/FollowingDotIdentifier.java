@@ -8,7 +8,6 @@ import com.util.Utils;
 
 public class FollowingDotIdentifier extends FollowingDot{
 	public Identifier identifier;
-	public Expression expr;
 	public ArrayList<Expression> exprs;
 	
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
@@ -39,5 +38,18 @@ public class FollowingDotIdentifier extends FollowingDot{
 		}
 		Utils.RollBack(lexemes, poped);
 		return false;
+	}
+
+	@Override
+	public void print() {
+		identifier.print();
+		System.out.print("(");
+		for(int i=0;i<exprs.size();++i) {
+			if(i>0)
+				System.out.print(", ");
+			exprs.get(i).print();
+		}
+		System.out.print(")");
+		
 	}
 }

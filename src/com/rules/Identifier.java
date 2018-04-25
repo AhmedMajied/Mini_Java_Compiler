@@ -19,5 +19,10 @@ public class Identifier {
 		}
 		return false;
 	}
+
+	public void print() {
+		System.out.print(id+ " ");
+		
+	}
 	
 }

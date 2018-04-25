@@ -16,4 +16,9 @@ public class FalseExpressionTerminalPart extends ExpressionTerminalPart{
 
 		return false;
 	}
+
+	@Override
+	public void print() {
+		System.out.print("false");
+	}
 }

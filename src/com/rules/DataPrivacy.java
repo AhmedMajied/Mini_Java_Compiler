@@ -19,4 +19,9 @@ public class DataPrivacy {
 		lexemes.poll();
 		return true;
 	}
+	
+	public void print() {
+		if(privacy!=null)
+			System.out.print(privacy+" ------ ");
+	}
 }

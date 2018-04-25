@@ -39,4 +39,21 @@ public class DotExpressionDash extends ExpressionDash {
 		}
 		return false;
 	}
+	
+	public void print() {
+		System.out.print(".");
+		followingDot.print();
+		if(expr!=null)
+			expr.print();
+	}
 }
+
+
+
+
+
+
+
+
+
+

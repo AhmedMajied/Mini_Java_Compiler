@@ -27,4 +27,14 @@ public class NewExpressionTerminalPart extends ExpressionTerminalPart {
 		Utils.RollBack(lexemes, poped);
 		return false;
 	}
+	
+	
+	@Override
+	public void print() {
+		System.out.print("new ");
+		followingNew.print();
+		
+	}
+	
+	
 }

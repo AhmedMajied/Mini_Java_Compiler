@@ -136,6 +136,34 @@ public class MethodDeclaration {
 		return true;
 		
 	}
+
+
+	public void print() {
+		privacy.print();
+		type.print();
+		identifier.print();
+		System.out.print("(");
+		for(int i = 0;i<params.size();++i) {
+			if(i>0)
+				System.out.print(", ");
+			params.get(i).print();
+		}
+		
+		System.out.print(") {\r\n");
+		for(VarDeclaration var : vars) {
+			var.print();
+			System.out.print("\r\n");
+		}
+		
+		for(Statement st : stmts) {
+			st.print();
+			System.out.print("\r\n");
+		}
+		
+		
+		System.out.print("}\r\n");
+		
+	}
 		
 
 }

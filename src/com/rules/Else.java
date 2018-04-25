@@ -9,9 +9,11 @@ public class Else {
 	public boolean isEmpty;
 	
 	public void parse(PriorityQueue<Lexeme> lexemes) {
+		isEmpty=false;
 		Lexeme l = lexemes.peek();
 		if(l==null||!l.relatedToken.name.equals("ELSE")){
 			isEmpty = true;
+			return;
 		}
 		else {
 			lexemes.poll();
@@ -42,5 +44,14 @@ public class Else {
 			}
 		}
 		isEmpty=false;
+	}
+	
+	
+	public void print() {
+		if(isEmpty)
+			return;
+		System.out.print("else ");
+		stmt.print();
+			
 	}
 }

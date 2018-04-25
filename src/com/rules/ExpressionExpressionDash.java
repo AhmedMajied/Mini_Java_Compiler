@@ -40,4 +40,12 @@ public class ExpressionExpressionDash extends ExpressionDash {
 
 		return true;
 	}
+	
+	public void print() {
+		System.out.print("[");
+		expr.print();
+		System.out.print("]");
+		exprDash.print();
+		
+	}
 }

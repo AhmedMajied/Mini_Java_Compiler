@@ -20,4 +20,11 @@ public class VarDeclaration {
 		lexemes.poll();
 		return true;
 	}
+
+	public void print() {
+		type.print();
+		identifier.print();
+		System.out.print(";\r\n");
+		
+	}
 }
