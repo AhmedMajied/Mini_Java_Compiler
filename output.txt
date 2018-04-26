@@ -1,18 +1,1 @@
-class x {
-public static void main(String []args ){
-{
-c =10;
-
-System.out.println(c );
-}
-
-}
-}
-class y {
-int  x () {
-return false
-}
-
-
-
-}
+Syntax Error !

@@ -137,20 +137,21 @@ public class MainClass {
 		
 
 		l = lexemes.peek();
+		
 		if(l==null||!l.relatedToken.name.equals("RIGHT_CURLY_B"))
 		{
 			Utils.RollBack(lexemes, poped);
 			return false;
 		}
 		poped.add(lexemes.poll());
-		
+
 		l = lexemes.peek();
 		if(l==null||!l.relatedToken.name.equals("RIGHT_CURLY_B"))
 		{
 			Utils.RollBack(lexemes, poped);
 			return false;
 		}
-		
+
 		lexemes.poll();
 		
 		return true;

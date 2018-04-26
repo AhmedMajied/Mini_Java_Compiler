@@ -18,32 +18,33 @@ public class Else {
 		else {
 			lexemes.poll();
 			stmt = new ScopeStatement();
-			if(!stmt.parse(lexemes)) {
-				isEmpty = true;
+			if(stmt.parse(lexemes)) {
+				isEmpty = false;
 				return;
 			}
 			stmt = new IfStatement();
-			if(!stmt.parse(lexemes)) {
-				isEmpty = true;
+			if(stmt.parse(lexemes)) {
+				isEmpty = false;
 				return;
 			}
 			stmt = new WhileStatement();
-			if(!stmt.parse(lexemes)) {
-				isEmpty = true;
+			if(stmt.parse(lexemes)) {
+				isEmpty = false;
 				return;
 			}
 			stmt = new PrintStatement();
-			if(!stmt.parse(lexemes)) {
-				isEmpty = true;
+			if(stmt.parse(lexemes)) {
+				isEmpty = false;
 				return;
 			}
 			stmt = new IdentifierStatement();
-			if(!stmt.parse(lexemes)) {
-				isEmpty = true;
+			if(stmt.parse(lexemes)) {
+				isEmpty = false;
 				return;
 			}
 		}
-		isEmpty=false;
+
+		isEmpty=true;
 	}
 	
 	

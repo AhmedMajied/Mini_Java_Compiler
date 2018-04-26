@@ -16,25 +16,28 @@ public class OperatorExpressionDash extends ExpressionDash {
 			expr=new Expression();
 			if(expr.parse(lexemes)) {
 				exprDash = new OperatorExpressionDash();
-				if(expr.parse(lexemes))
+				if(exprDash.parse(lexemes))
 					return true;
 				else {
 					exprDash = new ExpressionExpressionDash();
-					if(expr.parse(lexemes)) {
+					if(exprDash.parse(lexemes)) {
 						return true;
 					}
 					else {
 						exprDash = new DotExpressionDash();
-						if(expr.parse(lexemes)) {
+						if(exprDash.parse(lexemes)) {
 							return true;
-						}else {
+						}
+						else {
 							exprDash = null;
 							return true;
 						}
 					}
 				}
 			}
+			
 		}
+
 		return false;
 	}
 
@@ -44,7 +47,10 @@ public class OperatorExpressionDash extends ExpressionDash {
 		System.out.print(" ");
 		expr.print();
 		System.out.print(" ");
-		exprDash.print();
-		System.out.print(" ");
+		if(exprDash!=null)
+		{
+			exprDash.print();
+			System.out.print(" ");
+		}
 	}
 }

@@ -49,7 +49,7 @@ public class MAIN {
 		PriorityQueue<Lexeme> Lexemes = LexicalAnalyser.extractTokens(text);
 		Goal g = new Goal();
 		
-		System.setOut(new PrintStream(new File("output.txt"))); // Print to output.txt file
+		//System.setOut(new PrintStream(new File("output.txt"))); // Print to output.txt file
 		
 		if (g.parse(Lexemes)) {
 			g.print();
