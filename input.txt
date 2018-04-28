@@ -4,6 +4,6 @@ java */
 class HelloWorld
 {
 	public static void main(String[] args) {
-		System.out.println(5);
+		System.out.println(x[x.length-1]);
 	}
 } // syntax error as there is comment and also for //
