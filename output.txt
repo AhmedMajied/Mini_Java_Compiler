@@ -1,1 +1,7 @@
-Syntax Error !
+class Factorial {
+public static void main(String []a ){
+while(10 <= 20 ) {
+}
+
+}
+}
