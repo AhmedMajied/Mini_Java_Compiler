@@ -70,8 +70,10 @@ public class MethodDeclaration {
 
 		vars = new ArrayList<>();
 		VarDeclaration var = new VarDeclaration();
-		while(var.parse(lexemes))
+		while(var.parse(lexemes)) {
 			vars.add(var);
+			var = new VarDeclaration();
+		}
 		
 		
 		boolean isParsed = true;
