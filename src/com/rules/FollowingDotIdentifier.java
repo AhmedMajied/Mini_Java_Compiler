@@ -15,12 +15,16 @@ public class FollowingDotIdentifier extends FollowingDot{
 		if(lexemes.isEmpty())
 			return false;
 		exprs=new ArrayList<>();
+		Lexeme l = lexemes.peek();
+		if(l==null||!l.relatedToken.name.equals("DOT"))
+			return false;
+		poped.add(lexemes.poll());
 		identifier = new Identifier();
 		if(!identifier.parse(lexemes))
 			return false;
-		Lexeme l = lexemes.peek();
 		
-		
+		l = lexemes.peek();
+	
 		if(l!=null&&l.relatedToken.name.equals("LEFT_ROUND_B")) {
 			poped.add(lexemes.poll());
 			Expression expr = new Expression();
@@ -29,9 +33,12 @@ public class FollowingDotIdentifier extends FollowingDot{
 				l=lexemes.peek();
 				if(l!=null&&l.relatedToken.name.equals("COMMA"))
 					poped.add(lexemes.poll());
+				else break;
 			}
 			l = lexemes.peek();
+
 			if(l!=null&&l.relatedToken.name.equals("RIGHT_ROUND_B")) {
+
 				lexemes.poll();
 				return true;
 			}

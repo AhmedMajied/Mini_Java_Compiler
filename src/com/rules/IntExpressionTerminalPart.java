@@ -9,13 +9,14 @@ public class IntExpressionTerminalPart extends ExpressionTerminalPart {
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
 		if(lexemes.isEmpty())
 			return false;
+		
 		Lexeme l = lexemes.peek();
+
 		if (l!=null&&l.relatedToken.name.equals("INTEGRAL_LITERAL")) {
 			lexemes.poll();
 			number=Integer.parseInt(l.matchedWord);
 			return true;
 		}
-
 		return false;
 	}
 	
