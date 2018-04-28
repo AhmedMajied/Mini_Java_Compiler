@@ -98,7 +98,7 @@ public class LexicalAnalyser {
 		Tokens.add(new Token("THROW","\\bthrow\\b"));
 		Tokens.add(new Token("TRY","\\btry\\b"));
 		
-		//Tokens.add(new Token("EOL","\n"));
+		Tokens.add(new Token("EOL","\n"));
 		Tokens.add(new Token("PLUS","\\+"));
 		Tokens.add(new Token("COMMA",","));
 		Tokens.add(new Token("DOT","\\."));

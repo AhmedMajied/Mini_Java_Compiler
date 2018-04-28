@@ -31,13 +31,12 @@ public class OperatorExpressionDash extends ExpressionDash {
 						else {
 							exprDash = null;
 							return true;
+							
 						}
 					}
 				}
 			}
-			
 		}
-
 		return false;
 	}
 

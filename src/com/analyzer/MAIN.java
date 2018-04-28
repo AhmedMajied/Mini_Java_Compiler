@@ -47,9 +47,15 @@ public class MAIN {
 		String input = new String(Files.readAllBytes(Paths.get("input.txt")), StandardCharsets.UTF_8);
 		StringBuffer text = new StringBuffer(input);
 		PriorityQueue<Lexeme> Lexemes = LexicalAnalyser.extractTokens(text);
+		PriorityQueue<Lexeme> syntax = new PriorityQueue<>(new LexemeComparator());
+		while(!Lexemes.isEmpty()) {
+			Lexeme l = Lexemes.poll();
+			if(l.relatedToken.name!="EOL"&&l.relatedToken.name!="S_COMMENTS"&&l.relatedToken.name!="M_COMMENTS")
+				syntax.add(l);
+		}
 		Goal g = new Goal();
 		//System.setOut(new PrintStream(new File("output.txt"))); // Print to output.txt file
-		if (g.parse(Lexemes)) {
+		if (g.parse(syntax)) {
 			g.print();
 		}
 		else {

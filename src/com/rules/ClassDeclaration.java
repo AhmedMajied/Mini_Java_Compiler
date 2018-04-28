@@ -60,8 +60,10 @@ public class ClassDeclaration {
 
 		methods = new ArrayList<>();
 		MethodDeclaration method = new MethodDeclaration();
-		while(method.parse(lexemes))
+		while(method.parse(lexemes)) {
 			methods.add(method);
+			method = new MethodDeclaration();
+		}
 		l = lexemes.peek();
 		if(l==null||!l.relatedToken.name.equals("RIGHT_CURLY_B"))
 		{

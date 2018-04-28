@@ -13,12 +13,13 @@ public class IfStatement extends Statement{
 	
 	@Override
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
+
 		ArrayList<Lexeme> poped = new ArrayList<>();
 		Lexeme l = lexemes.peek();
 		if(l==null||!l.relatedToken.name.equals("IF"))
 			return false;
 		poped.add(lexemes.poll());
-		
+
 		l = lexemes.peek();
 		if(l==null||!l.relatedToken.name.equals("LEFT_ROUND_B"))
 		{
@@ -26,11 +27,11 @@ public class IfStatement extends Statement{
 			return false;
 		}
 		poped.add(lexemes.poll());
-		
+
 		expr=new Expression();
 		if(!expr.parse(lexemes))
 			return false;
-		
+
 		l = lexemes.peek();
 		if(l==null||!l.relatedToken.name.equals("RIGHT_ROUND_B"))
 		{
@@ -38,7 +39,7 @@ public class IfStatement extends Statement{
 			return false;
 		}
 		poped.add(lexemes.poll());
-		
+
 		_else = new Else();
 		
 		stmt = new ScopeStatement();

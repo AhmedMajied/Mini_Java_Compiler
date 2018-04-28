@@ -12,6 +12,7 @@ public class ExpressionExpressionDash extends ExpressionDash {
 
 	@Override
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
+
 		ArrayList<Lexeme> poped = new ArrayList<>();
 		Lexeme l = lexemes.peek();
 
@@ -21,22 +22,24 @@ public class ExpressionExpressionDash extends ExpressionDash {
 		expr = new Expression();
 		if (!expr.parse(lexemes))
 			return false;
-		exprDash = new OperatorExpressionDash();
-		if (!expr.parse(lexemes)) {
-			exprDash = new ExpressionExpressionDash();
-			if (!expr.parse(lexemes)) {
-				exprDash = new DotExpressionDash();
-				if (!expr.parse(lexemes)) {
-					exprDash = null;
-				}
-			}
-		}
+		
 		l = lexemes.peek();
 		if (l==null||!l.relatedToken.name.equals("RIGHT_SQUARE_B")) {
 			Utils.RollBack(lexemes, poped);
 			return false;
 		}
 		lexemes.poll();
+		
+		exprDash = new OperatorExpressionDash();
+		if (!exprDash.parse(lexemes)) {
+			exprDash = new ExpressionExpressionDash();
+			if (!exprDash.parse(lexemes)) {
+				exprDash = new DotExpressionDash();
+				if (!exprDash.parse(lexemes)) {
+					exprDash = null;
+				}
+			}
+		}
 
 		return true;
 	}
@@ -45,7 +48,9 @@ public class ExpressionExpressionDash extends ExpressionDash {
 		System.out.print("[");
 		expr.print();
 		System.out.print("]");
-		exprDash.print();
+		if(exprDash!=null)
+			exprDash.print();
+		
 		
 	}
 }

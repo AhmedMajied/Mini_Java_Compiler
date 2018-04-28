@@ -21,7 +21,6 @@ public class DataPrivacy {
 	}
 	
 	public void print() {
-		if(privacy!=null)
-			System.out.print(privacy+" ------ ");
+			System.out.print(privacy+" ");
 	}
 }

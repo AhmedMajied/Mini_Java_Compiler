@@ -56,6 +56,7 @@ public class Expression {
 			return true;
 		}
 		
+
 		return false;
 		
 	}
@@ -69,6 +70,7 @@ public class Expression {
 		exprDash = new DotExpressionDash();
 		if(!exprDash.parse(lexemes))
 			exprDash=null;
+
 	}
 	public void print() {
 		exprTerminal.print();

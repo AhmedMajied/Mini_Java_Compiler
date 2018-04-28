@@ -13,10 +13,11 @@ public class BracketFollowingIdentifier extends FollowingIdentifier {
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
 		ArrayList<Lexeme> poped = new ArrayList<>();
 		Lexeme l = lexemes.peek();
+
 		if(l==null||!l.relatedToken.name.equals("LEFT_SQUARE_B"))
 			return false;
 		poped.add(lexemes.poll());
-		
+
 		b_expr=new Expression();
 		if(!b_expr.parse(lexemes))
 			return false;

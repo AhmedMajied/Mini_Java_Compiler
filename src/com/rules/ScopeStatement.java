@@ -11,6 +11,7 @@ public class ScopeStatement extends Statement {
 
 	@Override
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
+
 		ArrayList<Lexeme> poped = new ArrayList<>();
 		Lexeme l = lexemes.peek();
 		if(l==null||!l.relatedToken.name.equals("LEFT_CURLY_B"))
@@ -18,15 +19,18 @@ public class ScopeStatement extends Statement {
 		poped.add(lexemes.poll());
 		stmts = new ArrayList<>();
 		boolean isParsed = true;
-		
+
 		while(isParsed) {
+
 			Statement st = new ScopeStatement();
 			if(st.parse(lexemes)) {
 				stmts.add(st);
 				continue;
 			}
 			st = new IfStatement();
+
 			if(st.parse(lexemes)) {
+
 				stmts.add(st);
 				continue;
 			}
@@ -47,7 +51,7 @@ public class ScopeStatement extends Statement {
 			}
 			isParsed=false;
 		}
-		
+
 		l = lexemes.peek();
 		if(l==null||!l.relatedToken.name.equals("RIGHT_CURLY_B"))
 		{

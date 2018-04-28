@@ -11,16 +11,19 @@ public class IdentifierStatement extends Statement{
 	
 	@Override
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
+
 		identifier=new Identifier();
 		if(!identifier.parse(lexemes))
 			return false;
+
 		followingIdentitifer=new EqualFollowingIdentifier();
 		if(followingIdentitifer.parse(lexemes))
 			return true;
 		followingIdentitifer=new BracketFollowingIdentifier();
+
 		if(followingIdentitifer.parse(lexemes))
 			return true;
-		
+
 		return false;
 	}
 

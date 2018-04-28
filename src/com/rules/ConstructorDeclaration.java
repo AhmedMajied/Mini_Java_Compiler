@@ -11,7 +11,7 @@ public class ConstructorDeclaration {
 	public ArrayList<Statement> stmts;
 
 	public boolean parse(PriorityQueue<Lexeme> lexemes) {
-
+		stmts=new ArrayList<>();
 		identifier = new Identifier();
 		if (!identifier.parse(lexemes))
 			return false;
@@ -42,9 +42,10 @@ public class ConstructorDeclaration {
 
 		vars = new ArrayList<>();
 		VarDeclaration var = new VarDeclaration();
-		while (var.parse(lexemes))
+		while (var.parse(lexemes)) {
 			vars.add(var);
-
+			var = new VarDeclaration();
+		}
 		boolean isParsed = true;
 
 		while (isParsed) {

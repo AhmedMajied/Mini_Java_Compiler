@@ -18,6 +18,7 @@ public class Goal {
 		classDeclarations = new ArrayList<>();
 		while (classDeclaration.parse(lexemes)) {
 			classDeclarations.add(classDeclaration);
+			classDeclaration = new ClassDeclaration();
 		}
 		return lexemes.isEmpty();
 	}
